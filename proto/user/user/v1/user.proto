@@ -5,7 +5,7 @@ package user.user.v1;
 import "google/protobuf/timestamp.proto";
 import "third_party/validate/validate.proto";
 
-option go_package = "github.com/mandacode-com/accounts-proto/user/user/v1;userpb";
+option go_package = "github.com/mandacode-com/accounts-proto/user/user/v1;userv1";
 
 service UserService {
   // Creates a new user

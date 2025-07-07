@@ -4,7 +4,7 @@
 // 	protoc        v3.21.12
 // source: user/user/v1/user.proto
 
-package userpb
+package userv1
 
 import (
 	_ "github.com/envoyproxy/protoc-gen-validate/validate"
@@ -375,7 +375,7 @@ const file_user_user_v1_user_proto_rawDesc = "" +
 	"CreateUser\x12\x1f.user.user.v1.CreateUserRequest\x1a .user.user.v1.CreateUserResponse\x12O\n" +
 	"\n" +
 	"DeleteUser\x12\x1f.user.user.v1.DeleteUserRequest\x1a .user.user.v1.DeleteUserResponse\x12R\n" +
-	"\vUpdateEmail\x12 .user.user.v1.UpdateEmailRequest\x1a!.user.user.v1.UpdateEmailResponseB=Z;github.com/mandacode-com/accounts-proto/user/user/v1;userpbb\x06proto3"
+	"\vUpdateEmail\x12 .user.user.v1.UpdateEmailRequest\x1a!.user.user.v1.UpdateEmailResponseB=Z;github.com/mandacode-com/accounts-proto/user/user/v1;userv1b\x06proto3"
 
 var (
 	file_user_user_v1_user_proto_rawDescOnce sync.Once

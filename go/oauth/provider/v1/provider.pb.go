@@ -4,7 +4,7 @@
 // 	protoc        v3.21.12
 // source: oauth/provider/v1/provider.proto
 
-package oauthproviderv1
+package providerv1
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -94,7 +94,7 @@ const file_oauth_provider_v1_provider_proto_rawDesc = "" +
 	"\x16O_AUTH_PROVIDER_GITHUB\x10\x03\x12\x19\n" +
 	"\x15O_AUTH_PROVIDER_KAKAO\x10\x04\x12\x19\n" +
 	"\x15O_AUTH_PROVIDER_NAVER\x10\x05\x12\x19\n" +
-	"\x15O_AUTH_PROVIDER_APPLE\x10\x06BKZIgithub.com/mandacode-com/accounts-proto/oauth/provider/v1;oauthproviderv1b\x06proto3"
+	"\x15O_AUTH_PROVIDER_APPLE\x10\x06BFZDgithub.com/mandacode-com/accounts-proto/oauth/provider/v1;providerv1b\x06proto3"
 
 var (
 	file_oauth_provider_v1_provider_proto_rawDescOnce sync.Once
