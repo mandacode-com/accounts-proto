@@ -5,7 +5,7 @@ package auth.login.oauth.v1;
 import "common/provider/v1/provider.proto";
 import "third_party/validate/validate.proto";
 
-option go_package = "mandacode.com/accounts/proto/auth/login/oauth/v1;oauthloginv1";
+option go_package = "github.com/mandacode-com/accounts-proto/auth/login/oauth/v1;oauthloginv1";
 
 service OAuthLoginService {
   // Login a user with OAuth provider

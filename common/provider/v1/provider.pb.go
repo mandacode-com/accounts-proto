@@ -94,7 +94,7 @@ const file_common_provider_v1_provider_proto_rawDesc = "" +
 	"\x16O_AUTH_PROVIDER_GITHUB\x10\x03\x12\x19\n" +
 	"\x15O_AUTH_PROVIDER_KAKAO\x10\x04\x12\x19\n" +
 	"\x15O_AUTH_PROVIDER_NAVER\x10\x05\x12\x19\n" +
-	"\x15O_AUTH_PROVIDER_APPLE\x10\x06B<Z:mandacode.com/accounts/proto/common/provider/v1;providerv1b\x06proto3"
+	"\x15O_AUTH_PROVIDER_APPLE\x10\x06BGZEgithub.com/mandacode-com/accounts-proto/common/provider/v1;providerv1b\x06proto3"
 
 var (
 	file_common_provider_v1_provider_proto_rawDescOnce sync.Once

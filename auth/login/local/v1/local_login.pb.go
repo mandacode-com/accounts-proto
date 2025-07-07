@@ -139,7 +139,7 @@ const file_auth_login_local_v1_local_login_proto_rawDesc = "" +
 	"\faccess_token\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\vaccessToken\x12,\n" +
 	"\rrefresh_token\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\frefreshToken2c\n" +
 	"\x11LocalLoginService\x12N\n" +
-	"\x05Login\x12!.auth.login.local.v1.LoginRequest\x1a\".auth.login.local.v1.LoginResponseB?Z=mandacode.com/accounts/proto/auth/login/local/v1;localloginv1b\x06proto3"
+	"\x05Login\x12!.auth.login.local.v1.LoginRequest\x1a\".auth.login.local.v1.LoginResponseBJZHgithub.com/mandacode-com/accounts-proto/auth/login/local/v1;localloginv1b\x06proto3"
 
 var (
 	file_auth_login_local_v1_local_login_proto_rawDescOnce sync.Once

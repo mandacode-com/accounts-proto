@@ -18,7 +18,7 @@ import (
 
 	"google.golang.org/protobuf/types/known/anypb"
 
-	providerv1 "mandacode.com/accounts/proto/common/provider/v1"
+	providerv1 "github.com/mandacode-com/accounts-proto/common/provider/v1"
 )
 
 // ensure the imports are used

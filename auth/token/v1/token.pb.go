@@ -233,7 +233,7 @@ const file_auth_token_v1_token_proto_rawDesc = "" +
 	"\rrefresh_token\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\frefreshToken2\xbd\x01\n" +
 	"\fTokenService\x12T\n" +
 	"\vVerifyToken\x12!.auth.token.v1.VerifyTokenRequest\x1a\".auth.token.v1.VerifyTokenResponse\x12W\n" +
-	"\fRefreshToken\x12\".auth.token.v1.RefreshTokenRequest\x1a#.auth.token.v1.RefreshTokenResponseB4Z2mandacode.com/accounts/proto/auth/token/v1;tokenv1b\x06proto3"
+	"\fRefreshToken\x12\".auth.token.v1.RefreshTokenRequest\x1a#.auth.token.v1.RefreshTokenResponseB?Z=github.com/mandacode-com/accounts-proto/auth/token/v1;tokenv1b\x06proto3"
 
 var (
 	file_auth_token_v1_token_proto_rawDescOnce sync.Once

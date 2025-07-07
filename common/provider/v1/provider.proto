@@ -2,7 +2,8 @@ syntax = "proto3";
 
 package common.provider.v1;
 
-option go_package = "mandacode.com/accounts/proto/common/provider/v1;providerv1";
+// option go_package = "mandacode.com/accounts/proto/common/provider/v1;providerv1";
+option go_package = "github.com/mandacode-com/accounts-proto/common/provider/v1;providerv1";
 
 enum OAuthProvider {
   O_AUTH_PROVIDER_UNSPECIFIED = 0; // Unspecified provider

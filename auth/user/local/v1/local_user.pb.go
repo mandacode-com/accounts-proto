@@ -878,7 +878,7 @@ const file_auth_user_local_v1_local_user_proto_rawDesc = "" +
 	"\vUpdateEmail\x12&.auth.user.local.v1.UpdateEmailRequest\x1a'.auth.user.local.v1.UpdateEmailResponse\x12g\n" +
 	"\x0eUpdatePassword\x12).auth.user.local.v1.UpdatePasswordRequest\x1a*.auth.user.local.v1.UpdatePasswordResponse\x12s\n" +
 	"\x12UpdateActiveStatus\x12-.auth.user.local.v1.UpdateActiveStatusRequest\x1a..auth.user.local.v1.UpdateActiveStatusResponse\x12y\n" +
-	"\x14UpdateVerifiedStatus\x12/.auth.user.local.v1.UpdateVerifiedStatusRequest\x1a0.auth.user.local.v1.UpdateVerifiedStatusResponseB=Z;mandacode.com/accounts/proto/auth/user/local/v1;localuserv1b\x06proto3"
+	"\x14UpdateVerifiedStatus\x12/.auth.user.local.v1.UpdateVerifiedStatusRequest\x1a0.auth.user.local.v1.UpdateVerifiedStatusResponseBHZFgithub.com/mandacode-com/accounts-proto/auth/user/local/v1;localuserv1b\x06proto3"
 
 var (
 	file_auth_user_local_v1_local_user_proto_rawDescOnce sync.Once

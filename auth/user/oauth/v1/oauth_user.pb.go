@@ -8,10 +8,10 @@ package oauthuserv1
 
 import (
 	_ "github.com/envoyproxy/protoc-gen-validate/validate"
+	v1 "github.com/mandacode-com/accounts-proto/common/provider/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
-	v1 "mandacode.com/accounts/proto/common/provider/v1"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -944,7 +944,7 @@ const file_auth_user_oauth_v1_oauth_user_proto_rawDesc = "" +
 	"\x12DeleteAllProviders\x12-.auth.user.oauth.v1.DeleteAllProvidersRequest\x1a..auth.user.oauth.v1.DeleteAllProvidersResponse\x12U\n" +
 	"\bSyncUser\x12#.auth.user.oauth.v1.SyncUserRequest\x1a$.auth.user.oauth.v1.SyncUserResponse\x12s\n" +
 	"\x12UpdateActiveStatus\x12-.auth.user.oauth.v1.UpdateActiveStatusRequest\x1a..auth.user.oauth.v1.UpdateActiveStatusResponse\x12y\n" +
-	"\x14UpdateVerifiedStatus\x12/.auth.user.oauth.v1.UpdateVerifiedStatusRequest\x1a0.auth.user.oauth.v1.UpdateVerifiedStatusResponseB=Z;mandacode.com/accounts/proto/auth/user/oauth/v1;oauthuserv1b\x06proto3"
+	"\x14UpdateVerifiedStatus\x12/.auth.user.oauth.v1.UpdateVerifiedStatusRequest\x1a0.auth.user.oauth.v1.UpdateVerifiedStatusResponseBHZFgithub.com/mandacode-com/accounts-proto/auth/user/oauth/v1;oauthuserv1b\x06proto3"
 
 var (
 	file_auth_user_oauth_v1_oauth_user_proto_rawDescOnce sync.Once

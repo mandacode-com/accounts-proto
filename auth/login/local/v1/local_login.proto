@@ -4,7 +4,7 @@ package auth.login.local.v1;
 
 import "third_party/validate/validate.proto";
 
-option go_package = "mandacode.com/accounts/proto/auth/login/local/v1;localloginv1";
+option go_package = "github.com/mandacode-com/accounts-proto/auth/login/local/v1;localloginv1";
 
 service LocalLoginService {
   // Login a user with email and password

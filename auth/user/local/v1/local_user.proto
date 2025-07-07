@@ -5,7 +5,7 @@ package auth.user.local.v1;
 import "google/protobuf/timestamp.proto";
 import "third_party/validate/validate.proto";
 
-option go_package = "mandacode.com/accounts/proto/auth/user/local/v1;localuserv1";
+option go_package = "github.com/mandacode-com/accounts-proto/auth/user/local/v1;localuserv1";
 
 service LocalUserService {
   // Gets a local user by user ID

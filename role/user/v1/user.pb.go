@@ -130,7 +130,7 @@ const file_role_user_v1_user_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12=\n" +
 	"\fcleanup_time\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\vcleanupTime2a\n" +
 	"\vUserService\x12R\n" +
-	"\vCleanupRole\x12 .role.user.v1.CleanupRoleRequest\x1a!.role.user.v1.CleanupRoleResponseB2Z0mandacode.com/accounts/proto/role/user/v1;userv1b\x06proto3"
+	"\vCleanupRole\x12 .role.user.v1.CleanupRoleRequest\x1a!.role.user.v1.CleanupRoleResponseB=Z;github.com/mandacode-com/accounts-proto/role/user/v1;userv1b\x06proto3"
 
 var (
 	file_role_user_v1_user_proto_rawDescOnce sync.Once

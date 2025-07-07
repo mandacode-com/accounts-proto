@@ -213,7 +213,7 @@ const file_user_event_v1_user_event_proto_rawDesc = "" +
 	"\x17UserCreationFailedEvent\x12!\n" +
 	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x129\n" +
 	"\n" +
-	"event_time\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\teventTimeB8Z6mandacode.com/accounts/proto/user/event/v1;usereventv1b\x06proto3"
+	"event_time\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\teventTimeBCZAgithub.com/mandacode-com/accounts-proto/user/event/v1;usereventv1b\x06proto3"
 
 var (
 	file_user_event_v1_user_event_proto_rawDescOnce sync.Once

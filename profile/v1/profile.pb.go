@@ -376,7 +376,7 @@ const file_profile_v1_profile_proto_rawDesc = "" +
 	"deleted_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt2\xbc\x01\n" +
 	"\x0eProfileService\x12T\n" +
 	"\rCreateProfile\x12 .profile.v1.CreateProfileRequest\x1a!.profile.v1.CreateProfileResponse\x12T\n" +
-	"\rDeleteProfile\x12 .profile.v1.DeleteProfileRequest\x1a!.profile.v1.DeleteProfileResponseB3Z1mandacode.com/accounts/proto/profile/v1;profilev1b\x06proto3"
+	"\rDeleteProfile\x12 .profile.v1.DeleteProfileRequest\x1a!.profile.v1.DeleteProfileResponseB>Z<github.com/mandacode-com/accounts-proto/profile/v1;profilev1b\x06proto3"
 
 var (
 	file_profile_v1_profile_proto_rawDescOnce sync.Once

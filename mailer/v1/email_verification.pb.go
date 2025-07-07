@@ -92,7 +92,7 @@ const file_mailer_v1_email_verification_proto_rawDesc = "" +
 	"\x05email\x18\x01 \x01(\tB\a\xfaB\x04r\x02`\x01R\x05email\x125\n" +
 	"\x11verification_link\x18\x02 \x01(\tB\b\xfaB\x05r\x03\x88\x01\x01R\x10verificationLink\x129\n" +
 	"\n" +
-	"event_time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\teventTimeB1Z/mandacode.com/accounts/proto/mailer/v1;mailerv1b\x06proto3"
+	"event_time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\teventTimeB<Z:github.com/mandacode-com/accounts-proto/mailer/v1;mailerv1b\x06proto3"
 
 var (
 	file_mailer_v1_email_verification_proto_rawDescOnce sync.Once
