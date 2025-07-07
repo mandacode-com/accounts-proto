@@ -3,26 +3,23 @@
 # ──────────────────────────────
 # 📁 Directory Paths
 # ──────────────────────────────
-PROTO_SRC := .
+PROTO_SRC := ./proto
+GO_GENERATED:= ./go
 
 # ──────────────────────────────
 # 📜 Generate & Clean Protobuf
 # ──────────────────────────────
-generate-proto:
+gen-proto:
+	echo "Generating Protobuf files..."
+	mkdir -p $(GO_GENERATED)
 	protoc \
 		-I $(PROTO_SRC) \
-		--go_out=paths=source_relative:$(PROTO_SRC) \
-		--go-grpc_out=paths=source_relative:$(PROTO_SRC) \
-		--validate_out=lang=go,paths=source_relative:$(PROTO_SRC) \
+		--go_out=paths=source_relative:$(GO_GENERATED) \
+		--go-grpc_out=paths=source_relative:$(GO_GENERATED) \
+		--validate_out=lang=go,paths=source_relative:$(GO_GENERATED) \
 		$$(find $(PROTO_SRC) -name "*.proto")
 
+
 clean-proto:
-	find $(PROTO_SRC) -name "*.pb.go" -delete
-	find $(PROTO_SRC) -name "*.pb.validate.go" -delete
-
-# ──────────────────────────────
-# 🧪 Unit Tests
-# ──────────────────────────────
-test-unit:
-	go test .../test/unit/...
-
+	echo "Cleaning generated Protobuf files..."
+	rm -rf $(GO_GENERATED)/*

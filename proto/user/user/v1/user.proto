@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package user.user.v1;
+
+import "google/protobuf/timestamp.proto";
+import "third_party/validate/validate.proto";
+
+option go_package = "github.com/mandacode-com/accounts-proto/user/user/v1;userpb";
+
+service UserService {
+  // Creates a new user
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+
+  // Deletes a user by user ID
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+
+  // Updates a user's email
+  rpc UpdateEmail(UpdateEmailRequest) returns (UpdateEmailResponse);
+}
+
+message CreateUserRequest {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+  string email = 2 [ (validate.rules).string = {email : true} ];
+}
+
+message CreateUserResponse {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+  google.protobuf.Timestamp created_at = 2; // User creation timestamp
+}
+
+message DeleteUserRequest {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+}
+message DeleteUserResponse {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+  google.protobuf.Timestamp deleted_at = 2; // User deletion timestamp
+}
+
+message UpdateEmailRequest {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+  string new_email = 2 [ (validate.rules).string = {email : true} ];
+}
+message UpdateEmailResponse {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+  string old_email = 2 [ (validate.rules).string = {email : true} ];
+  string new_email = 3 [ (validate.rules).string = {email : true} ];
+  google.protobuf.Timestamp updated_at = 4; // Email update timestamp
+}
