@@ -30,6 +30,8 @@ const (
 	UserEvent_USER_DELETED           UserEvent_EventType = 1
 	UserEvent_USER_ARCHIVED          UserEvent_EventType = 2
 	UserEvent_USER_RESTORED          UserEvent_EventType = 3
+	UserEvent_USER_BLOCKED           UserEvent_EventType = 4
+	UserEvent_USER_UNBLOCKED         UserEvent_EventType = 5
 )
 
 // Enum value maps for UserEvent_EventType.
@@ -39,12 +41,16 @@ var (
 		1: "USER_DELETED",
 		2: "USER_ARCHIVED",
 		3: "USER_RESTORED",
+		4: "USER_BLOCKED",
+		5: "USER_UNBLOCKED",
 	}
 	UserEvent_EventType_value = map[string]int32{
 		"EVENT_TYPE_UNSPECIFIED": 0,
 		"USER_DELETED":           1,
 		"USER_ARCHIVED":          2,
 		"USER_RESTORED":          3,
+		"USER_BLOCKED":           4,
+		"USER_UNBLOCKED":         5,
 	}
 )
 
@@ -147,19 +153,21 @@ var File_user_event_v1_user_event_proto protoreflect.FileDescriptor
 
 const file_user_event_v1_user_event_proto_rawDesc = "" +
 	"\n" +
-	"\x1euser/event/v1/user_event.proto\x12\ruser.event.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a#third_party/validate/validate.proto\"\xbd\x02\n" +
+	"\x1euser/event/v1/user_event.proto\x12\ruser.event.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a#third_party/validate/validate.proto\"\xe4\x02\n" +
 	"\tUserEvent\x12K\n" +
 	"\n" +
 	"event_type\x18\x01 \x01(\x0e2\".user.event.v1.UserEvent.EventTypeB\b\xfaB\x05\x82\x01\x02\x10\x01R\teventType\x12!\n" +
 	"\auser_id\x18\x02 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12$\n" +
 	"\tsync_code\x18\x03 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\bsyncCode\x129\n" +
 	"\n" +
-	"event_time\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\teventTime\"_\n" +
+	"event_time\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\teventTime\"\x85\x01\n" +
 	"\tEventType\x12\x1a\n" +
 	"\x16EVENT_TYPE_UNSPECIFIED\x10\x00\x12\x10\n" +
 	"\fUSER_DELETED\x10\x01\x12\x11\n" +
 	"\rUSER_ARCHIVED\x10\x02\x12\x11\n" +
-	"\rUSER_RESTORED\x10\x03BCZAgithub.com/mandacode-com/accounts-proto/user/event/v1;usereventv1b\x06proto3"
+	"\rUSER_RESTORED\x10\x03\x12\x10\n" +
+	"\fUSER_BLOCKED\x10\x04\x12\x12\n" +
+	"\x0eUSER_UNBLOCKED\x10\x05BCZAgithub.com/mandacode-com/accounts-proto/user/event/v1;usereventv1b\x06proto3"
 
 var (
 	file_user_event_v1_user_event_proto_rawDescOnce sync.Once

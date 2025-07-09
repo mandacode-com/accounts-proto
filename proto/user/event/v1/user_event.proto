@@ -13,10 +13,12 @@ message UserEvent {
     USER_DELETED = 1;
     USER_ARCHIVED = 2;
     USER_RESTORED = 3;
+    USER_BLOCKED = 4;
+    USER_UNBLOCKED = 5;
   }
 
-  EventType event_type = 1 [ (validate.rules).enum = { defined_only: true } ];
-  string user_id = 2 [ (validate.rules).string = { uuid: true } ];  
-  string sync_code = 3 [ (validate.rules).string = { min_len: 1 } ];
+  EventType event_type = 1 [ (validate.rules).enum = {defined_only : true} ];
+  string user_id = 2 [ (validate.rules).string = {uuid : true} ];
+  string sync_code = 3 [ (validate.rules).string = {min_len : 1} ];
   google.protobuf.Timestamp event_time = 4;
 }
