@@ -143,28 +143,29 @@ func (x *UserArchivedEvent) GetEventTime() *timestamppb.Timestamp {
 	return nil
 }
 
-type UserCreationFailedEvent struct {
+type UserRestoredEvent struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	EventTime     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=event_time,json=eventTime,proto3" json:"event_time,omitempty"`
+	SyncCode      string                 `protobuf:"bytes,2,opt,name=sync_code,json=syncCode,proto3" json:"sync_code,omitempty"`
+	EventTime     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=event_time,json=eventTime,proto3" json:"event_time,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UserCreationFailedEvent) Reset() {
-	*x = UserCreationFailedEvent{}
+func (x *UserRestoredEvent) Reset() {
+	*x = UserRestoredEvent{}
 	mi := &file_user_event_v1_user_event_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UserCreationFailedEvent) String() string {
+func (x *UserRestoredEvent) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UserCreationFailedEvent) ProtoMessage() {}
+func (*UserRestoredEvent) ProtoMessage() {}
 
-func (x *UserCreationFailedEvent) ProtoReflect() protoreflect.Message {
+func (x *UserRestoredEvent) ProtoReflect() protoreflect.Message {
 	mi := &file_user_event_v1_user_event_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -176,19 +177,26 @@ func (x *UserCreationFailedEvent) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UserCreationFailedEvent.ProtoReflect.Descriptor instead.
-func (*UserCreationFailedEvent) Descriptor() ([]byte, []int) {
+// Deprecated: Use UserRestoredEvent.ProtoReflect.Descriptor instead.
+func (*UserRestoredEvent) Descriptor() ([]byte, []int) {
 	return file_user_event_v1_user_event_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *UserCreationFailedEvent) GetUserId() string {
+func (x *UserRestoredEvent) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *UserCreationFailedEvent) GetEventTime() *timestamppb.Timestamp {
+func (x *UserRestoredEvent) GetSyncCode() string {
+	if x != nil {
+		return x.SyncCode
+	}
+	return ""
+}
+
+func (x *UserRestoredEvent) GetEventTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.EventTime
 	}
@@ -209,11 +217,12 @@ const file_user_event_v1_user_event_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12$\n" +
 	"\tsync_code\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\bsyncCode\x129\n" +
 	"\n" +
-	"event_time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\teventTime\"w\n" +
-	"\x17UserCreationFailedEvent\x12!\n" +
-	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x129\n" +
+	"event_time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\teventTime\"\x97\x01\n" +
+	"\x11UserRestoredEvent\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12$\n" +
+	"\tsync_code\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\bsyncCode\x129\n" +
 	"\n" +
-	"event_time\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\teventTimeBCZAgithub.com/mandacode-com/accounts-proto/user/event/v1;usereventv1b\x06proto3"
+	"event_time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\teventTimeBCZAgithub.com/mandacode-com/accounts-proto/user/event/v1;usereventv1b\x06proto3"
 
 var (
 	file_user_event_v1_user_event_proto_rawDescOnce sync.Once
@@ -229,15 +238,15 @@ func file_user_event_v1_user_event_proto_rawDescGZIP() []byte {
 
 var file_user_event_v1_user_event_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_user_event_v1_user_event_proto_goTypes = []any{
-	(*UserDeletedEvent)(nil),        // 0: user.event.v1.UserDeletedEvent
-	(*UserArchivedEvent)(nil),       // 1: user.event.v1.UserArchivedEvent
-	(*UserCreationFailedEvent)(nil), // 2: user.event.v1.UserCreationFailedEvent
-	(*timestamppb.Timestamp)(nil),   // 3: google.protobuf.Timestamp
+	(*UserDeletedEvent)(nil),      // 0: user.event.v1.UserDeletedEvent
+	(*UserArchivedEvent)(nil),     // 1: user.event.v1.UserArchivedEvent
+	(*UserRestoredEvent)(nil),     // 2: user.event.v1.UserRestoredEvent
+	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
 }
 var file_user_event_v1_user_event_proto_depIdxs = []int32{
 	3, // 0: user.event.v1.UserDeletedEvent.event_time:type_name -> google.protobuf.Timestamp
 	3, // 1: user.event.v1.UserArchivedEvent.event_time:type_name -> google.protobuf.Timestamp
-	3, // 2: user.event.v1.UserCreationFailedEvent.event_time:type_name -> google.protobuf.Timestamp
+	3, // 2: user.event.v1.UserRestoredEvent.event_time:type_name -> google.protobuf.Timestamp
 	3, // [3:3] is the sub-list for method output_type
 	3, // [3:3] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name

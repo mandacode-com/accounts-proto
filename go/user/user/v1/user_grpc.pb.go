@@ -19,21 +19,21 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UserService_CreateUser_FullMethodName  = "/user.user.v1.UserService/CreateUser"
-	UserService_DeleteUser_FullMethodName  = "/user.user.v1.UserService/DeleteUser"
-	UserService_UpdateEmail_FullMethodName = "/user.user.v1.UserService/UpdateEmail"
+	UserService_InitUser_FullMethodName   = "/user.user.v1.UserService/InitUser"
+	UserService_DeleteUser_FullMethodName = "/user.user.v1.UserService/DeleteUser"
+	UserService_IsActive_FullMethodName   = "/user.user.v1.UserService/IsActive"
 )
 
 // UserServiceClient is the client API for UserService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
-	// Creates a new user
-	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error)
+	// Initializes the user service
+	InitUser(ctx context.Context, in *InitUserRequest, opts ...grpc.CallOption) (*InitUserResponse, error)
 	// Deletes a user by user ID
 	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error)
-	// Updates a user's email
-	UpdateEmail(ctx context.Context, in *UpdateEmailRequest, opts ...grpc.CallOption) (*UpdateEmailResponse, error)
+	// IsActive checks if a user is active
+	IsActive(ctx context.Context, in *IsActiveRequest, opts ...grpc.CallOption) (*IsActiveResponse, error)
 }
 
 type userServiceClient struct {
@@ -44,10 +44,10 @@ func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
 	return &userServiceClient{cc}
 }
 
-func (c *userServiceClient) CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error) {
+func (c *userServiceClient) InitUser(ctx context.Context, in *InitUserRequest, opts ...grpc.CallOption) (*InitUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateUserResponse)
-	err := c.cc.Invoke(ctx, UserService_CreateUser_FullMethodName, in, out, cOpts...)
+	out := new(InitUserResponse)
+	err := c.cc.Invoke(ctx, UserService_InitUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -64,10 +64,10 @@ func (c *userServiceClient) DeleteUser(ctx context.Context, in *DeleteUserReques
 	return out, nil
 }
 
-func (c *userServiceClient) UpdateEmail(ctx context.Context, in *UpdateEmailRequest, opts ...grpc.CallOption) (*UpdateEmailResponse, error) {
+func (c *userServiceClient) IsActive(ctx context.Context, in *IsActiveRequest, opts ...grpc.CallOption) (*IsActiveResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateEmailResponse)
-	err := c.cc.Invoke(ctx, UserService_UpdateEmail_FullMethodName, in, out, cOpts...)
+	out := new(IsActiveResponse)
+	err := c.cc.Invoke(ctx, UserService_IsActive_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -78,12 +78,12 @@ func (c *userServiceClient) UpdateEmail(ctx context.Context, in *UpdateEmailRequ
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility.
 type UserServiceServer interface {
-	// Creates a new user
-	CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error)
+	// Initializes the user service
+	InitUser(context.Context, *InitUserRequest) (*InitUserResponse, error)
 	// Deletes a user by user ID
 	DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error)
-	// Updates a user's email
-	UpdateEmail(context.Context, *UpdateEmailRequest) (*UpdateEmailResponse, error)
+	// IsActive checks if a user is active
+	IsActive(context.Context, *IsActiveRequest) (*IsActiveResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -94,14 +94,14 @@ type UserServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedUserServiceServer struct{}
 
-func (UnimplementedUserServiceServer) CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
+func (UnimplementedUserServiceServer) InitUser(context.Context, *InitUserRequest) (*InitUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InitUser not implemented")
 }
 func (UnimplementedUserServiceServer) DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
 }
-func (UnimplementedUserServiceServer) UpdateEmail(context.Context, *UpdateEmailRequest) (*UpdateEmailResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateEmail not implemented")
+func (UnimplementedUserServiceServer) IsActive(context.Context, *IsActiveRequest) (*IsActiveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsActive not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 func (UnimplementedUserServiceServer) testEmbeddedByValue()                     {}
@@ -124,20 +124,20 @@ func RegisterUserServiceServer(s grpc.ServiceRegistrar, srv UserServiceServer) {
 	s.RegisterService(&UserService_ServiceDesc, srv)
 }
 
-func _UserService_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateUserRequest)
+func _UserService_InitUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InitUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).CreateUser(ctx, in)
+		return srv.(UserServiceServer).InitUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserService_CreateUser_FullMethodName,
+		FullMethod: UserService_InitUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).CreateUser(ctx, req.(*CreateUserRequest))
+		return srv.(UserServiceServer).InitUser(ctx, req.(*InitUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -160,20 +160,20 @@ func _UserService_DeleteUser_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_UpdateEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateEmailRequest)
+func _UserService_IsActive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsActiveRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).UpdateEmail(ctx, in)
+		return srv.(UserServiceServer).IsActive(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserService_UpdateEmail_FullMethodName,
+		FullMethod: UserService_IsActive_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).UpdateEmail(ctx, req.(*UpdateEmailRequest))
+		return srv.(UserServiceServer).IsActive(ctx, req.(*IsActiveRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -186,16 +186,16 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*UserServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateUser",
-			Handler:    _UserService_CreateUser_Handler,
+			MethodName: "InitUser",
+			Handler:    _UserService_InitUser_Handler,
 		},
 		{
 			MethodName: "DeleteUser",
 			Handler:    _UserService_DeleteUser_Handler,
 		},
 		{
-			MethodName: "UpdateEmail",
-			Handler:    _UserService_UpdateEmail_Handler,
+			MethodName: "IsActive",
+			Handler:    _UserService_IsActive_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

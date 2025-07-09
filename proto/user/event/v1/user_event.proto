@@ -19,7 +19,8 @@ message UserArchivedEvent {
   google.protobuf.Timestamp event_time = 3;
 }
 
-message UserCreationFailedEvent {
+message UserRestoredEvent {
   string user_id = 1 [ (validate.rules).string = {uuid : true} ];
-  google.protobuf.Timestamp event_time = 2;
+  string sync_code = 2 [ (validate.rules).string = {min_len : 1} ];
+  google.protobuf.Timestamp event_time = 3;
 }

@@ -23,28 +23,27 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type CreateUserRequest struct {
+type InitUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Email         string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CreateUserRequest) Reset() {
-	*x = CreateUserRequest{}
+func (x *InitUserRequest) Reset() {
+	*x = InitUserRequest{}
 	mi := &file_user_user_v1_user_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateUserRequest) String() string {
+func (x *InitUserRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateUserRequest) ProtoMessage() {}
+func (*InitUserRequest) ProtoMessage() {}
 
-func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
+func (x *InitUserRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_user_user_v1_user_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -56,47 +55,41 @@ func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateUserRequest.ProtoReflect.Descriptor instead.
-func (*CreateUserRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use InitUserRequest.ProtoReflect.Descriptor instead.
+func (*InitUserRequest) Descriptor() ([]byte, []int) {
 	return file_user_user_v1_user_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CreateUserRequest) GetUserId() string {
+func (x *InitUserRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *CreateUserRequest) GetEmail() string {
-	if x != nil {
-		return x.Email
-	}
-	return ""
-}
-
-type CreateUserResponse struct {
+type InitUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"` // User creation timestamp
+	InitializedAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=initialized_at,json=initializedAt,proto3" json:"initialized_at,omitempty"` // User initialization timestamp
+	SyncCode      string                 `protobuf:"bytes,3,opt,name=sync_code,json=syncCode,proto3" json:"sync_code,omitempty"`                // Sync code for tracking
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CreateUserResponse) Reset() {
-	*x = CreateUserResponse{}
+func (x *InitUserResponse) Reset() {
+	*x = InitUserResponse{}
 	mi := &file_user_user_v1_user_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateUserResponse) String() string {
+func (x *InitUserResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateUserResponse) ProtoMessage() {}
+func (*InitUserResponse) ProtoMessage() {}
 
-func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
+func (x *InitUserResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_user_user_v1_user_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -108,23 +101,30 @@ func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateUserResponse.ProtoReflect.Descriptor instead.
-func (*CreateUserResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use InitUserResponse.ProtoReflect.Descriptor instead.
+func (*InitUserResponse) Descriptor() ([]byte, []int) {
 	return file_user_user_v1_user_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateUserResponse) GetUserId() string {
+func (x *InitUserResponse) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *CreateUserResponse) GetCreatedAt() *timestamppb.Timestamp {
+func (x *InitUserResponse) GetInitializedAt() *timestamppb.Timestamp {
 	if x != nil {
-		return x.CreatedAt
+		return x.InitializedAt
 	}
 	return nil
+}
+
+func (x *InitUserResponse) GetSyncCode() string {
+	if x != nil {
+		return x.SyncCode
+	}
+	return ""
 }
 
 type DeleteUserRequest struct {
@@ -223,28 +223,27 @@ func (x *DeleteUserResponse) GetDeletedAt() *timestamppb.Timestamp {
 	return nil
 }
 
-type UpdateEmailRequest struct {
+type IsActiveRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	NewEmail      string                 `protobuf:"bytes,2,opt,name=new_email,json=newEmail,proto3" json:"new_email,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UpdateEmailRequest) Reset() {
-	*x = UpdateEmailRequest{}
+func (x *IsActiveRequest) Reset() {
+	*x = IsActiveRequest{}
 	mi := &file_user_user_v1_user_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdateEmailRequest) String() string {
+func (x *IsActiveRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateEmailRequest) ProtoMessage() {}
+func (*IsActiveRequest) ProtoMessage() {}
 
-func (x *UpdateEmailRequest) ProtoReflect() protoreflect.Message {
+func (x *IsActiveRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_user_user_v1_user_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -256,49 +255,41 @@ func (x *UpdateEmailRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateEmailRequest.ProtoReflect.Descriptor instead.
-func (*UpdateEmailRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use IsActiveRequest.ProtoReflect.Descriptor instead.
+func (*IsActiveRequest) Descriptor() ([]byte, []int) {
 	return file_user_user_v1_user_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *UpdateEmailRequest) GetUserId() string {
+func (x *IsActiveRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *UpdateEmailRequest) GetNewEmail() string {
-	if x != nil {
-		return x.NewEmail
-	}
-	return ""
-}
-
-type UpdateEmailResponse struct {
+type IsActiveResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	OldEmail      string                 `protobuf:"bytes,2,opt,name=old_email,json=oldEmail,proto3" json:"old_email,omitempty"`
-	NewEmail      string                 `protobuf:"bytes,3,opt,name=new_email,json=newEmail,proto3" json:"new_email,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"` // Email update timestamp
+	IsActive      bool                   `protobuf:"varint,2,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`   // Indicates if the user is active
+	CheckedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=checked_at,json=checkedAt,proto3" json:"checked_at,omitempty"` // Timestamp when the check was performed
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UpdateEmailResponse) Reset() {
-	*x = UpdateEmailResponse{}
+func (x *IsActiveResponse) Reset() {
+	*x = IsActiveResponse{}
 	mi := &file_user_user_v1_user_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdateEmailResponse) String() string {
+func (x *IsActiveResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateEmailResponse) ProtoMessage() {}
+func (*IsActiveResponse) ProtoMessage() {}
 
-func (x *UpdateEmailResponse) ProtoReflect() protoreflect.Message {
+func (x *IsActiveResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_user_user_v1_user_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -310,35 +301,28 @@ func (x *UpdateEmailResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateEmailResponse.ProtoReflect.Descriptor instead.
-func (*UpdateEmailResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use IsActiveResponse.ProtoReflect.Descriptor instead.
+func (*IsActiveResponse) Descriptor() ([]byte, []int) {
 	return file_user_user_v1_user_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *UpdateEmailResponse) GetUserId() string {
+func (x *IsActiveResponse) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *UpdateEmailResponse) GetOldEmail() string {
+func (x *IsActiveResponse) GetIsActive() bool {
 	if x != nil {
-		return x.OldEmail
+		return x.IsActive
 	}
-	return ""
+	return false
 }
 
-func (x *UpdateEmailResponse) GetNewEmail() string {
+func (x *IsActiveResponse) GetCheckedAt() *timestamppb.Timestamp {
 	if x != nil {
-		return x.NewEmail
-	}
-	return ""
-}
-
-func (x *UpdateEmailResponse) GetUpdatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
+		return x.CheckedAt
 	}
 	return nil
 }
@@ -347,35 +331,31 @@ var File_user_user_v1_user_proto protoreflect.FileDescriptor
 
 const file_user_user_v1_user_proto_rawDesc = "" +
 	"\n" +
-	"\x17user/user/v1/user.proto\x12\fuser.user.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a#third_party/validate/validate.proto\"U\n" +
-	"\x11CreateUserRequest\x12!\n" +
-	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12\x1d\n" +
-	"\x05email\x18\x02 \x01(\tB\a\xfaB\x04r\x02`\x01R\x05email\"r\n" +
-	"\x12CreateUserResponse\x12!\n" +
-	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x129\n" +
-	"\n" +
-	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"6\n" +
+	"\x17user/user/v1/user.proto\x12\fuser.user.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a#third_party/validate/validate.proto\"4\n" +
+	"\x0fInitUserRequest\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\"\x9e\x01\n" +
+	"\x10InitUserResponse\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12A\n" +
+	"\x0einitialized_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\rinitializedAt\x12$\n" +
+	"\tsync_code\x18\x03 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\bsyncCode\"6\n" +
 	"\x11DeleteUserRequest\x12!\n" +
 	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\"r\n" +
 	"\x12DeleteUserResponse\x12!\n" +
 	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x129\n" +
 	"\n" +
-	"deleted_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt\"]\n" +
-	"\x12UpdateEmailRequest\x12!\n" +
-	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12$\n" +
-	"\tnew_email\x18\x02 \x01(\tB\a\xfaB\x04r\x02`\x01R\bnewEmail\"\xbf\x01\n" +
-	"\x13UpdateEmailResponse\x12!\n" +
-	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12$\n" +
-	"\told_email\x18\x02 \x01(\tB\a\xfaB\x04r\x02`\x01R\boldEmail\x12$\n" +
-	"\tnew_email\x18\x03 \x01(\tB\a\xfaB\x04r\x02`\x01R\bnewEmail\x129\n" +
+	"deleted_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt\"4\n" +
+	"\x0fIsActiveRequest\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\"\x8d\x01\n" +
+	"\x10IsActiveResponse\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12\x1b\n" +
+	"\tis_active\x18\x02 \x01(\bR\bisActive\x129\n" +
 	"\n" +
-	"updated_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt2\x83\x02\n" +
-	"\vUserService\x12O\n" +
+	"checked_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tcheckedAt2\xf4\x01\n" +
+	"\vUserService\x12I\n" +
+	"\bInitUser\x12\x1d.user.user.v1.InitUserRequest\x1a\x1e.user.user.v1.InitUserResponse\x12O\n" +
 	"\n" +
-	"CreateUser\x12\x1f.user.user.v1.CreateUserRequest\x1a .user.user.v1.CreateUserResponse\x12O\n" +
-	"\n" +
-	"DeleteUser\x12\x1f.user.user.v1.DeleteUserRequest\x1a .user.user.v1.DeleteUserResponse\x12R\n" +
-	"\vUpdateEmail\x12 .user.user.v1.UpdateEmailRequest\x1a!.user.user.v1.UpdateEmailResponseB=Z;github.com/mandacode-com/accounts-proto/user/user/v1;userv1b\x06proto3"
+	"DeleteUser\x12\x1f.user.user.v1.DeleteUserRequest\x1a .user.user.v1.DeleteUserResponse\x12I\n" +
+	"\bIsActive\x12\x1d.user.user.v1.IsActiveRequest\x1a\x1e.user.user.v1.IsActiveResponseB=Z;github.com/mandacode-com/accounts-proto/user/user/v1;userv1b\x06proto3"
 
 var (
 	file_user_user_v1_user_proto_rawDescOnce sync.Once
@@ -391,24 +371,24 @@ func file_user_user_v1_user_proto_rawDescGZIP() []byte {
 
 var file_user_user_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_user_user_v1_user_proto_goTypes = []any{
-	(*CreateUserRequest)(nil),     // 0: user.user.v1.CreateUserRequest
-	(*CreateUserResponse)(nil),    // 1: user.user.v1.CreateUserResponse
+	(*InitUserRequest)(nil),       // 0: user.user.v1.InitUserRequest
+	(*InitUserResponse)(nil),      // 1: user.user.v1.InitUserResponse
 	(*DeleteUserRequest)(nil),     // 2: user.user.v1.DeleteUserRequest
 	(*DeleteUserResponse)(nil),    // 3: user.user.v1.DeleteUserResponse
-	(*UpdateEmailRequest)(nil),    // 4: user.user.v1.UpdateEmailRequest
-	(*UpdateEmailResponse)(nil),   // 5: user.user.v1.UpdateEmailResponse
+	(*IsActiveRequest)(nil),       // 4: user.user.v1.IsActiveRequest
+	(*IsActiveResponse)(nil),      // 5: user.user.v1.IsActiveResponse
 	(*timestamppb.Timestamp)(nil), // 6: google.protobuf.Timestamp
 }
 var file_user_user_v1_user_proto_depIdxs = []int32{
-	6, // 0: user.user.v1.CreateUserResponse.created_at:type_name -> google.protobuf.Timestamp
+	6, // 0: user.user.v1.InitUserResponse.initialized_at:type_name -> google.protobuf.Timestamp
 	6, // 1: user.user.v1.DeleteUserResponse.deleted_at:type_name -> google.protobuf.Timestamp
-	6, // 2: user.user.v1.UpdateEmailResponse.updated_at:type_name -> google.protobuf.Timestamp
-	0, // 3: user.user.v1.UserService.CreateUser:input_type -> user.user.v1.CreateUserRequest
+	6, // 2: user.user.v1.IsActiveResponse.checked_at:type_name -> google.protobuf.Timestamp
+	0, // 3: user.user.v1.UserService.InitUser:input_type -> user.user.v1.InitUserRequest
 	2, // 4: user.user.v1.UserService.DeleteUser:input_type -> user.user.v1.DeleteUserRequest
-	4, // 5: user.user.v1.UserService.UpdateEmail:input_type -> user.user.v1.UpdateEmailRequest
-	1, // 6: user.user.v1.UserService.CreateUser:output_type -> user.user.v1.CreateUserResponse
+	4, // 5: user.user.v1.UserService.IsActive:input_type -> user.user.v1.IsActiveRequest
+	1, // 6: user.user.v1.UserService.InitUser:output_type -> user.user.v1.InitUserResponse
 	3, // 7: user.user.v1.UserService.DeleteUser:output_type -> user.user.v1.DeleteUserResponse
-	5, // 8: user.user.v1.UserService.UpdateEmail:output_type -> user.user.v1.UpdateEmailResponse
+	5, // 8: user.user.v1.UserService.IsActive:output_type -> user.user.v1.IsActiveResponse
 	6, // [6:9] is the sub-list for method output_type
 	3, // [3:6] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name

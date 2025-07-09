@@ -8,24 +8,24 @@ import "third_party/validate/validate.proto";
 option go_package = "github.com/mandacode-com/accounts-proto/user/user/v1;userv1";
 
 service UserService {
-  // Creates a new user
-  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  // Initializes the user service
+  rpc InitUser(InitUserRequest) returns (InitUserResponse);
 
   // Deletes a user by user ID
   rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
 
-  // Updates a user's email
-  rpc UpdateEmail(UpdateEmailRequest) returns (UpdateEmailResponse);
+  // IsActive checks if a user is active
+  rpc IsActive(IsActiveRequest) returns (IsActiveResponse);
 }
 
-message CreateUserRequest {
+message InitUserRequest {
   string user_id = 1 [ (validate.rules).string = {uuid : true} ];
-  string email = 2 [ (validate.rules).string = {email : true} ];
 }
-
-message CreateUserResponse {
+message InitUserResponse {
   string user_id = 1 [ (validate.rules).string = {uuid : true} ];
-  google.protobuf.Timestamp created_at = 2; // User creation timestamp
+  google.protobuf.Timestamp initialized_at = 2; // User initialization timestamp
+  string sync_code = 3
+      [ (validate.rules).string = {min_len : 1} ]; // Sync code for tracking
 }
 
 message DeleteUserRequest {
@@ -36,13 +36,13 @@ message DeleteUserResponse {
   google.protobuf.Timestamp deleted_at = 2; // User deletion timestamp
 }
 
-message UpdateEmailRequest {
+message IsActiveRequest {
   string user_id = 1 [ (validate.rules).string = {uuid : true} ];
-  string new_email = 2 [ (validate.rules).string = {email : true} ];
 }
-message UpdateEmailResponse {
+
+message IsActiveResponse {
   string user_id = 1 [ (validate.rules).string = {uuid : true} ];
-  string old_email = 2 [ (validate.rules).string = {email : true} ];
-  string new_email = 3 [ (validate.rules).string = {email : true} ];
-  google.protobuf.Timestamp updated_at = 4; // Email update timestamp
+  bool is_active = 2; // Indicates if the user is active
+  google.protobuf.Timestamp checked_at =
+      3; // Timestamp when the check was performed
 }
