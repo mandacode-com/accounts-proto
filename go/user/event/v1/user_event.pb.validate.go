@@ -38,30 +38,41 @@ var (
 // define the regex for a UUID once up-front
 var _user_event_uuidPattern = regexp.MustCompile("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
 
-// Validate checks the field values on UserDeletedEvent with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// first error encountered is returned, or nil if there are no violations.
-func (m *UserDeletedEvent) Validate() error {
+// Validate checks the field values on UserEvent with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *UserEvent) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on UserDeletedEvent with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// UserDeletedEventMultiError, or nil if none found.
-func (m *UserDeletedEvent) ValidateAll() error {
+// ValidateAll checks the field values on UserEvent with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in UserEventMultiError, or nil
+// if none found.
+func (m *UserEvent) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *UserDeletedEvent) validate(all bool) error {
+func (m *UserEvent) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
 
 	var errors []error
 
+	if _, ok := UserEvent_EventType_name[int32(m.GetEventType())]; !ok {
+		err := UserEventValidationError{
+			field:  "EventType",
+			reason: "value must be one of the defined enum values",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
 	if err := m._validateUuid(m.GetUserId()); err != nil {
-		err = UserDeletedEventValidationError{
+		err = UserEventValidationError{
 			field:  "UserId",
 			reason: "value must be a valid UUID",
 			cause:  err,
@@ -73,7 +84,7 @@ func (m *UserDeletedEvent) validate(all bool) error {
 	}
 
 	if utf8.RuneCountInString(m.GetSyncCode()) < 1 {
-		err := UserDeletedEventValidationError{
+		err := UserEventValidationError{
 			field:  "SyncCode",
 			reason: "value length must be at least 1 runes",
 		}
@@ -87,7 +98,7 @@ func (m *UserDeletedEvent) validate(all bool) error {
 		switch v := interface{}(m.GetEventTime()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, UserDeletedEventValidationError{
+				errors = append(errors, UserEventValidationError{
 					field:  "EventTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -95,7 +106,7 @@ func (m *UserDeletedEvent) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, UserDeletedEventValidationError{
+				errors = append(errors, UserEventValidationError{
 					field:  "EventTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -104,7 +115,7 @@ func (m *UserDeletedEvent) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetEventTime()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return UserDeletedEventValidationError{
+			return UserEventValidationError{
 				field:  "EventTime",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -113,13 +124,13 @@ func (m *UserDeletedEvent) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return UserDeletedEventMultiError(errors)
+		return UserEventMultiError(errors)
 	}
 
 	return nil
 }
 
-func (m *UserDeletedEvent) _validateUuid(uuid string) error {
+func (m *UserEvent) _validateUuid(uuid string) error {
 	if matched := _user_event_uuidPattern.MatchString(uuid); !matched {
 		return errors.New("invalid uuid format")
 	}
@@ -127,13 +138,12 @@ func (m *UserDeletedEvent) _validateUuid(uuid string) error {
 	return nil
 }
 
-// UserDeletedEventMultiError is an error wrapping multiple validation errors
-// returned by UserDeletedEvent.ValidateAll() if the designated constraints
-// aren't met.
-type UserDeletedEventMultiError []error
+// UserEventMultiError is an error wrapping multiple validation errors returned
+// by UserEvent.ValidateAll() if the designated constraints aren't met.
+type UserEventMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m UserDeletedEventMultiError) Error() string {
+func (m UserEventMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -142,11 +152,11 @@ func (m UserDeletedEventMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m UserDeletedEventMultiError) AllErrors() []error { return m }
+func (m UserEventMultiError) AllErrors() []error { return m }
 
-// UserDeletedEventValidationError is the validation error returned by
-// UserDeletedEvent.Validate if the designated constraints aren't met.
-type UserDeletedEventValidationError struct {
+// UserEventValidationError is the validation error returned by
+// UserEvent.Validate if the designated constraints aren't met.
+type UserEventValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -154,22 +164,22 @@ type UserDeletedEventValidationError struct {
 }
 
 // Field function returns field value.
-func (e UserDeletedEventValidationError) Field() string { return e.field }
+func (e UserEventValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e UserDeletedEventValidationError) Reason() string { return e.reason }
+func (e UserEventValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e UserDeletedEventValidationError) Cause() error { return e.cause }
+func (e UserEventValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e UserDeletedEventValidationError) Key() bool { return e.key }
+func (e UserEventValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e UserDeletedEventValidationError) ErrorName() string { return "UserDeletedEventValidationError" }
+func (e UserEventValidationError) ErrorName() string { return "UserEventValidationError" }
 
 // Error satisfies the builtin error interface
-func (e UserDeletedEventValidationError) Error() string {
+func (e UserEventValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -181,14 +191,14 @@ func (e UserDeletedEventValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sUserDeletedEvent.%s: %s%s",
+		"invalid %sUserEvent.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = UserDeletedEventValidationError{}
+var _ error = UserEventValidationError{}
 
 var _ interface {
 	Field() string
@@ -196,328 +206,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = UserDeletedEventValidationError{}
-
-// Validate checks the field values on UserArchivedEvent with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// first error encountered is returned, or nil if there are no violations.
-func (m *UserArchivedEvent) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on UserArchivedEvent with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// UserArchivedEventMultiError, or nil if none found.
-func (m *UserArchivedEvent) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *UserArchivedEvent) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	if err := m._validateUuid(m.GetUserId()); err != nil {
-		err = UserArchivedEventValidationError{
-			field:  "UserId",
-			reason: "value must be a valid UUID",
-			cause:  err,
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
-
-	if utf8.RuneCountInString(m.GetSyncCode()) < 1 {
-		err := UserArchivedEventValidationError{
-			field:  "SyncCode",
-			reason: "value length must be at least 1 runes",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
-
-	if all {
-		switch v := interface{}(m.GetEventTime()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, UserArchivedEventValidationError{
-					field:  "EventTime",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, UserArchivedEventValidationError{
-					field:  "EventTime",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetEventTime()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UserArchivedEventValidationError{
-				field:  "EventTime",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if len(errors) > 0 {
-		return UserArchivedEventMultiError(errors)
-	}
-
-	return nil
-}
-
-func (m *UserArchivedEvent) _validateUuid(uuid string) error {
-	if matched := _user_event_uuidPattern.MatchString(uuid); !matched {
-		return errors.New("invalid uuid format")
-	}
-
-	return nil
-}
-
-// UserArchivedEventMultiError is an error wrapping multiple validation errors
-// returned by UserArchivedEvent.ValidateAll() if the designated constraints
-// aren't met.
-type UserArchivedEventMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m UserArchivedEventMultiError) Error() string {
-	msgs := make([]string, 0, len(m))
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m UserArchivedEventMultiError) AllErrors() []error { return m }
-
-// UserArchivedEventValidationError is the validation error returned by
-// UserArchivedEvent.Validate if the designated constraints aren't met.
-type UserArchivedEventValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e UserArchivedEventValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e UserArchivedEventValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e UserArchivedEventValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e UserArchivedEventValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e UserArchivedEventValidationError) ErrorName() string {
-	return "UserArchivedEventValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e UserArchivedEventValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sUserArchivedEvent.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = UserArchivedEventValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = UserArchivedEventValidationError{}
-
-// Validate checks the field values on UserRestoredEvent with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// first error encountered is returned, or nil if there are no violations.
-func (m *UserRestoredEvent) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on UserRestoredEvent with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// UserRestoredEventMultiError, or nil if none found.
-func (m *UserRestoredEvent) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *UserRestoredEvent) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	if err := m._validateUuid(m.GetUserId()); err != nil {
-		err = UserRestoredEventValidationError{
-			field:  "UserId",
-			reason: "value must be a valid UUID",
-			cause:  err,
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
-
-	if utf8.RuneCountInString(m.GetSyncCode()) < 1 {
-		err := UserRestoredEventValidationError{
-			field:  "SyncCode",
-			reason: "value length must be at least 1 runes",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
-
-	if all {
-		switch v := interface{}(m.GetEventTime()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, UserRestoredEventValidationError{
-					field:  "EventTime",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, UserRestoredEventValidationError{
-					field:  "EventTime",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetEventTime()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return UserRestoredEventValidationError{
-				field:  "EventTime",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if len(errors) > 0 {
-		return UserRestoredEventMultiError(errors)
-	}
-
-	return nil
-}
-
-func (m *UserRestoredEvent) _validateUuid(uuid string) error {
-	if matched := _user_event_uuidPattern.MatchString(uuid); !matched {
-		return errors.New("invalid uuid format")
-	}
-
-	return nil
-}
-
-// UserRestoredEventMultiError is an error wrapping multiple validation errors
-// returned by UserRestoredEvent.ValidateAll() if the designated constraints
-// aren't met.
-type UserRestoredEventMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m UserRestoredEventMultiError) Error() string {
-	msgs := make([]string, 0, len(m))
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m UserRestoredEventMultiError) AllErrors() []error { return m }
-
-// UserRestoredEventValidationError is the validation error returned by
-// UserRestoredEvent.Validate if the designated constraints aren't met.
-type UserRestoredEventValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e UserRestoredEventValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e UserRestoredEventValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e UserRestoredEventValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e UserRestoredEventValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e UserRestoredEventValidationError) ErrorName() string {
-	return "UserRestoredEventValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e UserRestoredEventValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sUserRestoredEvent.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = UserRestoredEventValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = UserRestoredEventValidationError{}
+} = UserEventValidationError{}

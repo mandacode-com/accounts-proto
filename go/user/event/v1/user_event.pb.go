@@ -23,29 +23,82 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type UserDeletedEvent struct {
+type UserEvent_EventType int32
+
+const (
+	UserEvent_EVENT_TYPE_UNSPECIFIED UserEvent_EventType = 0
+	UserEvent_USER_DELETED           UserEvent_EventType = 1
+	UserEvent_USER_ARCHIVED          UserEvent_EventType = 2
+	UserEvent_USER_RESTORED          UserEvent_EventType = 3
+)
+
+// Enum value maps for UserEvent_EventType.
+var (
+	UserEvent_EventType_name = map[int32]string{
+		0: "EVENT_TYPE_UNSPECIFIED",
+		1: "USER_DELETED",
+		2: "USER_ARCHIVED",
+		3: "USER_RESTORED",
+	}
+	UserEvent_EventType_value = map[string]int32{
+		"EVENT_TYPE_UNSPECIFIED": 0,
+		"USER_DELETED":           1,
+		"USER_ARCHIVED":          2,
+		"USER_RESTORED":          3,
+	}
+)
+
+func (x UserEvent_EventType) Enum() *UserEvent_EventType {
+	p := new(UserEvent_EventType)
+	*p = x
+	return p
+}
+
+func (x UserEvent_EventType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (UserEvent_EventType) Descriptor() protoreflect.EnumDescriptor {
+	return file_user_event_v1_user_event_proto_enumTypes[0].Descriptor()
+}
+
+func (UserEvent_EventType) Type() protoreflect.EnumType {
+	return &file_user_event_v1_user_event_proto_enumTypes[0]
+}
+
+func (x UserEvent_EventType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use UserEvent_EventType.Descriptor instead.
+func (UserEvent_EventType) EnumDescriptor() ([]byte, []int) {
+	return file_user_event_v1_user_event_proto_rawDescGZIP(), []int{0, 0}
+}
+
+type UserEvent struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	SyncCode      string                 `protobuf:"bytes,2,opt,name=sync_code,json=syncCode,proto3" json:"sync_code,omitempty"`
-	EventTime     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=event_time,json=eventTime,proto3" json:"event_time,omitempty"`
+	EventType     UserEvent_EventType    `protobuf:"varint,1,opt,name=event_type,json=eventType,proto3,enum=user.event.v1.UserEvent_EventType" json:"event_type,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	SyncCode      string                 `protobuf:"bytes,3,opt,name=sync_code,json=syncCode,proto3" json:"sync_code,omitempty"`
+	EventTime     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=event_time,json=eventTime,proto3" json:"event_time,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UserDeletedEvent) Reset() {
-	*x = UserDeletedEvent{}
+func (x *UserEvent) Reset() {
+	*x = UserEvent{}
 	mi := &file_user_event_v1_user_event_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UserDeletedEvent) String() string {
+func (x *UserEvent) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UserDeletedEvent) ProtoMessage() {}
+func (*UserEvent) ProtoMessage() {}
 
-func (x *UserDeletedEvent) ProtoReflect() protoreflect.Message {
+func (x *UserEvent) ProtoReflect() protoreflect.Message {
 	mi := &file_user_event_v1_user_event_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -57,146 +110,33 @@ func (x *UserDeletedEvent) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UserDeletedEvent.ProtoReflect.Descriptor instead.
-func (*UserDeletedEvent) Descriptor() ([]byte, []int) {
+// Deprecated: Use UserEvent.ProtoReflect.Descriptor instead.
+func (*UserEvent) Descriptor() ([]byte, []int) {
 	return file_user_event_v1_user_event_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *UserDeletedEvent) GetUserId() string {
+func (x *UserEvent) GetEventType() UserEvent_EventType {
+	if x != nil {
+		return x.EventType
+	}
+	return UserEvent_EVENT_TYPE_UNSPECIFIED
+}
+
+func (x *UserEvent) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *UserDeletedEvent) GetSyncCode() string {
+func (x *UserEvent) GetSyncCode() string {
 	if x != nil {
 		return x.SyncCode
 	}
 	return ""
 }
 
-func (x *UserDeletedEvent) GetEventTime() *timestamppb.Timestamp {
-	if x != nil {
-		return x.EventTime
-	}
-	return nil
-}
-
-type UserArchivedEvent struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	SyncCode      string                 `protobuf:"bytes,2,opt,name=sync_code,json=syncCode,proto3" json:"sync_code,omitempty"`
-	EventTime     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=event_time,json=eventTime,proto3" json:"event_time,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UserArchivedEvent) Reset() {
-	*x = UserArchivedEvent{}
-	mi := &file_user_event_v1_user_event_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UserArchivedEvent) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UserArchivedEvent) ProtoMessage() {}
-
-func (x *UserArchivedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_user_event_v1_user_event_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UserArchivedEvent.ProtoReflect.Descriptor instead.
-func (*UserArchivedEvent) Descriptor() ([]byte, []int) {
-	return file_user_event_v1_user_event_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *UserArchivedEvent) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
-func (x *UserArchivedEvent) GetSyncCode() string {
-	if x != nil {
-		return x.SyncCode
-	}
-	return ""
-}
-
-func (x *UserArchivedEvent) GetEventTime() *timestamppb.Timestamp {
-	if x != nil {
-		return x.EventTime
-	}
-	return nil
-}
-
-type UserRestoredEvent struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	SyncCode      string                 `protobuf:"bytes,2,opt,name=sync_code,json=syncCode,proto3" json:"sync_code,omitempty"`
-	EventTime     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=event_time,json=eventTime,proto3" json:"event_time,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UserRestoredEvent) Reset() {
-	*x = UserRestoredEvent{}
-	mi := &file_user_event_v1_user_event_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UserRestoredEvent) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UserRestoredEvent) ProtoMessage() {}
-
-func (x *UserRestoredEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_user_event_v1_user_event_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UserRestoredEvent.ProtoReflect.Descriptor instead.
-func (*UserRestoredEvent) Descriptor() ([]byte, []int) {
-	return file_user_event_v1_user_event_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *UserRestoredEvent) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
-func (x *UserRestoredEvent) GetSyncCode() string {
-	if x != nil {
-		return x.SyncCode
-	}
-	return ""
-}
-
-func (x *UserRestoredEvent) GetEventTime() *timestamppb.Timestamp {
+func (x *UserEvent) GetEventTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.EventTime
 	}
@@ -207,22 +147,19 @@ var File_user_event_v1_user_event_proto protoreflect.FileDescriptor
 
 const file_user_event_v1_user_event_proto_rawDesc = "" +
 	"\n" +
-	"\x1euser/event/v1/user_event.proto\x12\ruser.event.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a#third_party/validate/validate.proto\"\x96\x01\n" +
-	"\x10UserDeletedEvent\x12!\n" +
-	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12$\n" +
-	"\tsync_code\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\bsyncCode\x129\n" +
+	"\x1euser/event/v1/user_event.proto\x12\ruser.event.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a#third_party/validate/validate.proto\"\xbd\x02\n" +
+	"\tUserEvent\x12K\n" +
 	"\n" +
-	"event_time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\teventTime\"\x97\x01\n" +
-	"\x11UserArchivedEvent\x12!\n" +
-	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12$\n" +
-	"\tsync_code\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\bsyncCode\x129\n" +
+	"event_type\x18\x01 \x01(\x0e2\".user.event.v1.UserEvent.EventTypeB\b\xfaB\x05\x82\x01\x02\x10\x01R\teventType\x12!\n" +
+	"\auser_id\x18\x02 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12$\n" +
+	"\tsync_code\x18\x03 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\bsyncCode\x129\n" +
 	"\n" +
-	"event_time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\teventTime\"\x97\x01\n" +
-	"\x11UserRestoredEvent\x12!\n" +
-	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12$\n" +
-	"\tsync_code\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\bsyncCode\x129\n" +
-	"\n" +
-	"event_time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\teventTimeBCZAgithub.com/mandacode-com/accounts-proto/user/event/v1;usereventv1b\x06proto3"
+	"event_time\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\teventTime\"_\n" +
+	"\tEventType\x12\x1a\n" +
+	"\x16EVENT_TYPE_UNSPECIFIED\x10\x00\x12\x10\n" +
+	"\fUSER_DELETED\x10\x01\x12\x11\n" +
+	"\rUSER_ARCHIVED\x10\x02\x12\x11\n" +
+	"\rUSER_RESTORED\x10\x03BCZAgithub.com/mandacode-com/accounts-proto/user/event/v1;usereventv1b\x06proto3"
 
 var (
 	file_user_event_v1_user_event_proto_rawDescOnce sync.Once
@@ -236,22 +173,21 @@ func file_user_event_v1_user_event_proto_rawDescGZIP() []byte {
 	return file_user_event_v1_user_event_proto_rawDescData
 }
 
-var file_user_event_v1_user_event_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_user_event_v1_user_event_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_user_event_v1_user_event_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_user_event_v1_user_event_proto_goTypes = []any{
-	(*UserDeletedEvent)(nil),      // 0: user.event.v1.UserDeletedEvent
-	(*UserArchivedEvent)(nil),     // 1: user.event.v1.UserArchivedEvent
-	(*UserRestoredEvent)(nil),     // 2: user.event.v1.UserRestoredEvent
-	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
+	(UserEvent_EventType)(0),      // 0: user.event.v1.UserEvent.EventType
+	(*UserEvent)(nil),             // 1: user.event.v1.UserEvent
+	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
 }
 var file_user_event_v1_user_event_proto_depIdxs = []int32{
-	3, // 0: user.event.v1.UserDeletedEvent.event_time:type_name -> google.protobuf.Timestamp
-	3, // 1: user.event.v1.UserArchivedEvent.event_time:type_name -> google.protobuf.Timestamp
-	3, // 2: user.event.v1.UserRestoredEvent.event_time:type_name -> google.protobuf.Timestamp
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	0, // 0: user.event.v1.UserEvent.event_type:type_name -> user.event.v1.UserEvent.EventType
+	2, // 1: user.event.v1.UserEvent.event_time:type_name -> google.protobuf.Timestamp
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_user_event_v1_user_event_proto_init() }
@@ -264,13 +200,14 @@ func file_user_event_v1_user_event_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_event_v1_user_event_proto_rawDesc), len(file_user_event_v1_user_event_proto_rawDesc)),
-			NumEnums:      0,
-			NumMessages:   3,
+			NumEnums:      1,
+			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_user_event_v1_user_event_proto_goTypes,
 		DependencyIndexes: file_user_event_v1_user_event_proto_depIdxs,
+		EnumInfos:         file_user_event_v1_user_event_proto_enumTypes,
 		MessageInfos:      file_user_event_v1_user_event_proto_msgTypes,
 	}.Build()
 	File_user_event_v1_user_event_proto = out.File
