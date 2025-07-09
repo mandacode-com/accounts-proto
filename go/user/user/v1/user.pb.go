@@ -327,6 +327,110 @@ func (x *IsActiveResponse) GetCheckedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+type IsBlockedRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IsBlockedRequest) Reset() {
+	*x = IsBlockedRequest{}
+	mi := &file_user_user_v1_user_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IsBlockedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IsBlockedRequest) ProtoMessage() {}
+
+func (x *IsBlockedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_user_v1_user_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IsBlockedRequest.ProtoReflect.Descriptor instead.
+func (*IsBlockedRequest) Descriptor() ([]byte, []int) {
+	return file_user_user_v1_user_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *IsBlockedRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type IsBlockedResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	IsBlocked     bool                   `protobuf:"varint,2,opt,name=is_blocked,json=isBlocked,proto3" json:"is_blocked,omitempty"` // Indicates if the user is blocked
+	CheckedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=checked_at,json=checkedAt,proto3" json:"checked_at,omitempty"`  // Timestamp when the check was performed
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IsBlockedResponse) Reset() {
+	*x = IsBlockedResponse{}
+	mi := &file_user_user_v1_user_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IsBlockedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IsBlockedResponse) ProtoMessage() {}
+
+func (x *IsBlockedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_user_v1_user_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IsBlockedResponse.ProtoReflect.Descriptor instead.
+func (*IsBlockedResponse) Descriptor() ([]byte, []int) {
+	return file_user_user_v1_user_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *IsBlockedResponse) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *IsBlockedResponse) GetIsBlocked() bool {
+	if x != nil {
+		return x.IsBlocked
+	}
+	return false
+}
+
+func (x *IsBlockedResponse) GetCheckedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CheckedAt
+	}
+	return nil
+}
+
 var File_user_user_v1_user_proto protoreflect.FileDescriptor
 
 const file_user_user_v1_user_proto_rawDesc = "" +
@@ -350,12 +454,21 @@ const file_user_user_v1_user_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12\x1b\n" +
 	"\tis_active\x18\x02 \x01(\bR\bisActive\x129\n" +
 	"\n" +
-	"checked_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tcheckedAt2\xf4\x01\n" +
+	"checked_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tcheckedAt\"5\n" +
+	"\x10IsBlockedRequest\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\"\x90\x01\n" +
+	"\x11IsBlockedResponse\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12\x1d\n" +
+	"\n" +
+	"is_blocked\x18\x02 \x01(\bR\tisBlocked\x129\n" +
+	"\n" +
+	"checked_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tcheckedAt2\xc2\x02\n" +
 	"\vUserService\x12I\n" +
 	"\bInitUser\x12\x1d.user.user.v1.InitUserRequest\x1a\x1e.user.user.v1.InitUserResponse\x12O\n" +
 	"\n" +
 	"DeleteUser\x12\x1f.user.user.v1.DeleteUserRequest\x1a .user.user.v1.DeleteUserResponse\x12I\n" +
-	"\bIsActive\x12\x1d.user.user.v1.IsActiveRequest\x1a\x1e.user.user.v1.IsActiveResponseB=Z;github.com/mandacode-com/accounts-proto/user/user/v1;userv1b\x06proto3"
+	"\bIsActive\x12\x1d.user.user.v1.IsActiveRequest\x1a\x1e.user.user.v1.IsActiveResponse\x12L\n" +
+	"\tIsBlocked\x12\x1e.user.user.v1.IsBlockedRequest\x1a\x1f.user.user.v1.IsBlockedResponseB=Z;github.com/mandacode-com/accounts-proto/user/user/v1;userv1b\x06proto3"
 
 var (
 	file_user_user_v1_user_proto_rawDescOnce sync.Once
@@ -369,7 +482,7 @@ func file_user_user_v1_user_proto_rawDescGZIP() []byte {
 	return file_user_user_v1_user_proto_rawDescData
 }
 
-var file_user_user_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_user_user_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_user_user_v1_user_proto_goTypes = []any{
 	(*InitUserRequest)(nil),       // 0: user.user.v1.InitUserRequest
 	(*InitUserResponse)(nil),      // 1: user.user.v1.InitUserResponse
@@ -377,23 +490,28 @@ var file_user_user_v1_user_proto_goTypes = []any{
 	(*DeleteUserResponse)(nil),    // 3: user.user.v1.DeleteUserResponse
 	(*IsActiveRequest)(nil),       // 4: user.user.v1.IsActiveRequest
 	(*IsActiveResponse)(nil),      // 5: user.user.v1.IsActiveResponse
-	(*timestamppb.Timestamp)(nil), // 6: google.protobuf.Timestamp
+	(*IsBlockedRequest)(nil),      // 6: user.user.v1.IsBlockedRequest
+	(*IsBlockedResponse)(nil),     // 7: user.user.v1.IsBlockedResponse
+	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
 }
 var file_user_user_v1_user_proto_depIdxs = []int32{
-	6, // 0: user.user.v1.InitUserResponse.initialized_at:type_name -> google.protobuf.Timestamp
-	6, // 1: user.user.v1.DeleteUserResponse.deleted_at:type_name -> google.protobuf.Timestamp
-	6, // 2: user.user.v1.IsActiveResponse.checked_at:type_name -> google.protobuf.Timestamp
-	0, // 3: user.user.v1.UserService.InitUser:input_type -> user.user.v1.InitUserRequest
-	2, // 4: user.user.v1.UserService.DeleteUser:input_type -> user.user.v1.DeleteUserRequest
-	4, // 5: user.user.v1.UserService.IsActive:input_type -> user.user.v1.IsActiveRequest
-	1, // 6: user.user.v1.UserService.InitUser:output_type -> user.user.v1.InitUserResponse
-	3, // 7: user.user.v1.UserService.DeleteUser:output_type -> user.user.v1.DeleteUserResponse
-	5, // 8: user.user.v1.UserService.IsActive:output_type -> user.user.v1.IsActiveResponse
-	6, // [6:9] is the sub-list for method output_type
-	3, // [3:6] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	8, // 0: user.user.v1.InitUserResponse.initialized_at:type_name -> google.protobuf.Timestamp
+	8, // 1: user.user.v1.DeleteUserResponse.deleted_at:type_name -> google.protobuf.Timestamp
+	8, // 2: user.user.v1.IsActiveResponse.checked_at:type_name -> google.protobuf.Timestamp
+	8, // 3: user.user.v1.IsBlockedResponse.checked_at:type_name -> google.protobuf.Timestamp
+	0, // 4: user.user.v1.UserService.InitUser:input_type -> user.user.v1.InitUserRequest
+	2, // 5: user.user.v1.UserService.DeleteUser:input_type -> user.user.v1.DeleteUserRequest
+	4, // 6: user.user.v1.UserService.IsActive:input_type -> user.user.v1.IsActiveRequest
+	6, // 7: user.user.v1.UserService.IsBlocked:input_type -> user.user.v1.IsBlockedRequest
+	1, // 8: user.user.v1.UserService.InitUser:output_type -> user.user.v1.InitUserResponse
+	3, // 9: user.user.v1.UserService.DeleteUser:output_type -> user.user.v1.DeleteUserResponse
+	5, // 10: user.user.v1.UserService.IsActive:output_type -> user.user.v1.IsActiveResponse
+	7, // 11: user.user.v1.UserService.IsBlocked:output_type -> user.user.v1.IsBlockedResponse
+	8, // [8:12] is the sub-list for method output_type
+	4, // [4:8] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_user_user_v1_user_proto_init() }
@@ -407,7 +525,7 @@ func file_user_user_v1_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_user_v1_user_proto_rawDesc), len(file_user_user_v1_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

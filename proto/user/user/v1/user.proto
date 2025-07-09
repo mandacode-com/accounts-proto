@@ -16,6 +16,9 @@ service UserService {
 
   // IsActive checks if a user is active
   rpc IsActive(IsActiveRequest) returns (IsActiveResponse);
+
+  // IsBlocked checks if a user is blocked
+  rpc IsBlocked(IsBlockedRequest) returns (IsBlockedResponse);
 }
 
 message InitUserRequest {
@@ -43,6 +46,16 @@ message IsActiveRequest {
 message IsActiveResponse {
   string user_id = 1 [ (validate.rules).string = {uuid : true} ];
   bool is_active = 2; // Indicates if the user is active
+  google.protobuf.Timestamp checked_at =
+      3; // Timestamp when the check was performed
+}
+
+message IsBlockedRequest {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+}
+message IsBlockedResponse {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+  bool is_blocked = 2; // Indicates if the user is blocked
   google.protobuf.Timestamp checked_at =
       3; // Timestamp when the check was performed
 }

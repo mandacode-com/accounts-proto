@@ -22,6 +22,7 @@ const (
 	UserService_InitUser_FullMethodName   = "/user.user.v1.UserService/InitUser"
 	UserService_DeleteUser_FullMethodName = "/user.user.v1.UserService/DeleteUser"
 	UserService_IsActive_FullMethodName   = "/user.user.v1.UserService/IsActive"
+	UserService_IsBlocked_FullMethodName  = "/user.user.v1.UserService/IsBlocked"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -34,6 +35,8 @@ type UserServiceClient interface {
 	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error)
 	// IsActive checks if a user is active
 	IsActive(ctx context.Context, in *IsActiveRequest, opts ...grpc.CallOption) (*IsActiveResponse, error)
+	// IsBlocked checks if a user is blocked
+	IsBlocked(ctx context.Context, in *IsBlockedRequest, opts ...grpc.CallOption) (*IsBlockedResponse, error)
 }
 
 type userServiceClient struct {
@@ -74,6 +77,16 @@ func (c *userServiceClient) IsActive(ctx context.Context, in *IsActiveRequest, o
 	return out, nil
 }
 
+func (c *userServiceClient) IsBlocked(ctx context.Context, in *IsBlockedRequest, opts ...grpc.CallOption) (*IsBlockedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IsBlockedResponse)
+	err := c.cc.Invoke(ctx, UserService_IsBlocked_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility.
@@ -84,6 +97,8 @@ type UserServiceServer interface {
 	DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error)
 	// IsActive checks if a user is active
 	IsActive(context.Context, *IsActiveRequest) (*IsActiveResponse, error)
+	// IsBlocked checks if a user is blocked
+	IsBlocked(context.Context, *IsBlockedRequest) (*IsBlockedResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -102,6 +117,9 @@ func (UnimplementedUserServiceServer) DeleteUser(context.Context, *DeleteUserReq
 }
 func (UnimplementedUserServiceServer) IsActive(context.Context, *IsActiveRequest) (*IsActiveResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsActive not implemented")
+}
+func (UnimplementedUserServiceServer) IsBlocked(context.Context, *IsBlockedRequest) (*IsBlockedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsBlocked not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 func (UnimplementedUserServiceServer) testEmbeddedByValue()                     {}
@@ -178,6 +196,24 @@ func _UserService_IsActive_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_IsBlocked_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsBlockedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).IsBlocked(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_IsBlocked_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).IsBlocked(ctx, req.(*IsBlockedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -196,6 +232,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "IsActive",
 			Handler:    _UserService_IsActive_Handler,
+		},
+		{
+			MethodName: "IsBlocked",
+			Handler:    _UserService_IsBlocked_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

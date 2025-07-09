@@ -861,3 +861,276 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = IsActiveResponseValidationError{}
+
+// Validate checks the field values on IsBlockedRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *IsBlockedRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on IsBlockedRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// IsBlockedRequestMultiError, or nil if none found.
+func (m *IsBlockedRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *IsBlockedRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if err := m._validateUuid(m.GetUserId()); err != nil {
+		err = IsBlockedRequestValidationError{
+			field:  "UserId",
+			reason: "value must be a valid UUID",
+			cause:  err,
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if len(errors) > 0 {
+		return IsBlockedRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+func (m *IsBlockedRequest) _validateUuid(uuid string) error {
+	if matched := _user_uuidPattern.MatchString(uuid); !matched {
+		return errors.New("invalid uuid format")
+	}
+
+	return nil
+}
+
+// IsBlockedRequestMultiError is an error wrapping multiple validation errors
+// returned by IsBlockedRequest.ValidateAll() if the designated constraints
+// aren't met.
+type IsBlockedRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m IsBlockedRequestMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m IsBlockedRequestMultiError) AllErrors() []error { return m }
+
+// IsBlockedRequestValidationError is the validation error returned by
+// IsBlockedRequest.Validate if the designated constraints aren't met.
+type IsBlockedRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e IsBlockedRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e IsBlockedRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e IsBlockedRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e IsBlockedRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e IsBlockedRequestValidationError) ErrorName() string { return "IsBlockedRequestValidationError" }
+
+// Error satisfies the builtin error interface
+func (e IsBlockedRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sIsBlockedRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = IsBlockedRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = IsBlockedRequestValidationError{}
+
+// Validate checks the field values on IsBlockedResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *IsBlockedResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on IsBlockedResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// IsBlockedResponseMultiError, or nil if none found.
+func (m *IsBlockedResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *IsBlockedResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if err := m._validateUuid(m.GetUserId()); err != nil {
+		err = IsBlockedResponseValidationError{
+			field:  "UserId",
+			reason: "value must be a valid UUID",
+			cause:  err,
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	// no validation rules for IsBlocked
+
+	if all {
+		switch v := interface{}(m.GetCheckedAt()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, IsBlockedResponseValidationError{
+					field:  "CheckedAt",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, IsBlockedResponseValidationError{
+					field:  "CheckedAt",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetCheckedAt()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return IsBlockedResponseValidationError{
+				field:  "CheckedAt",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return IsBlockedResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+func (m *IsBlockedResponse) _validateUuid(uuid string) error {
+	if matched := _user_uuidPattern.MatchString(uuid); !matched {
+		return errors.New("invalid uuid format")
+	}
+
+	return nil
+}
+
+// IsBlockedResponseMultiError is an error wrapping multiple validation errors
+// returned by IsBlockedResponse.ValidateAll() if the designated constraints
+// aren't met.
+type IsBlockedResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m IsBlockedResponseMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m IsBlockedResponseMultiError) AllErrors() []error { return m }
+
+// IsBlockedResponseValidationError is the validation error returned by
+// IsBlockedResponse.Validate if the designated constraints aren't met.
+type IsBlockedResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e IsBlockedResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e IsBlockedResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e IsBlockedResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e IsBlockedResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e IsBlockedResponseValidationError) ErrorName() string {
+	return "IsBlockedResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e IsBlockedResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sIsBlockedResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = IsBlockedResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = IsBlockedResponseValidationError{}
