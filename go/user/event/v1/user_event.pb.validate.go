@@ -60,7 +60,7 @@ func (m *UserEvent) validate(all bool) error {
 
 	var errors []error
 
-	if _, ok := UserEvent_EventType_name[int32(m.GetEventType())]; !ok {
+	if _, ok := EventType_name[int32(m.GetEventType())]; !ok {
 		err := UserEventValidationError{
 			field:  "EventType",
 			reason: "value must be one of the defined enum values",

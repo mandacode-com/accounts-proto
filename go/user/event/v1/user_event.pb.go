@@ -23,20 +23,20 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type UserEvent_EventType int32
+type EventType int32
 
 const (
-	UserEvent_EVENT_TYPE_UNSPECIFIED UserEvent_EventType = 0
-	UserEvent_USER_DELETED           UserEvent_EventType = 1
-	UserEvent_USER_ARCHIVED          UserEvent_EventType = 2
-	UserEvent_USER_RESTORED          UserEvent_EventType = 3
-	UserEvent_USER_BLOCKED           UserEvent_EventType = 4
-	UserEvent_USER_UNBLOCKED         UserEvent_EventType = 5
+	EventType_EVENT_TYPE_UNSPECIFIED EventType = 0
+	EventType_USER_DELETED           EventType = 1
+	EventType_USER_ARCHIVED          EventType = 2
+	EventType_USER_RESTORED          EventType = 3
+	EventType_USER_BLOCKED           EventType = 4
+	EventType_USER_UNBLOCKED         EventType = 5
 )
 
-// Enum value maps for UserEvent_EventType.
+// Enum value maps for EventType.
 var (
-	UserEvent_EventType_name = map[int32]string{
+	EventType_name = map[int32]string{
 		0: "EVENT_TYPE_UNSPECIFIED",
 		1: "USER_DELETED",
 		2: "USER_ARCHIVED",
@@ -44,7 +44,7 @@ var (
 		4: "USER_BLOCKED",
 		5: "USER_UNBLOCKED",
 	}
-	UserEvent_EventType_value = map[string]int32{
+	EventType_value = map[string]int32{
 		"EVENT_TYPE_UNSPECIFIED": 0,
 		"USER_DELETED":           1,
 		"USER_ARCHIVED":          2,
@@ -54,36 +54,36 @@ var (
 	}
 )
 
-func (x UserEvent_EventType) Enum() *UserEvent_EventType {
-	p := new(UserEvent_EventType)
+func (x EventType) Enum() *EventType {
+	p := new(EventType)
 	*p = x
 	return p
 }
 
-func (x UserEvent_EventType) String() string {
+func (x EventType) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (UserEvent_EventType) Descriptor() protoreflect.EnumDescriptor {
+func (EventType) Descriptor() protoreflect.EnumDescriptor {
 	return file_user_event_v1_user_event_proto_enumTypes[0].Descriptor()
 }
 
-func (UserEvent_EventType) Type() protoreflect.EnumType {
+func (EventType) Type() protoreflect.EnumType {
 	return &file_user_event_v1_user_event_proto_enumTypes[0]
 }
 
-func (x UserEvent_EventType) Number() protoreflect.EnumNumber {
+func (x EventType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use UserEvent_EventType.Descriptor instead.
-func (UserEvent_EventType) EnumDescriptor() ([]byte, []int) {
-	return file_user_event_v1_user_event_proto_rawDescGZIP(), []int{0, 0}
+// Deprecated: Use EventType.Descriptor instead.
+func (EventType) EnumDescriptor() ([]byte, []int) {
+	return file_user_event_v1_user_event_proto_rawDescGZIP(), []int{0}
 }
 
 type UserEvent struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	EventType     UserEvent_EventType    `protobuf:"varint,1,opt,name=event_type,json=eventType,proto3,enum=user.event.v1.UserEvent_EventType" json:"event_type,omitempty"`
+	EventType     EventType              `protobuf:"varint,1,opt,name=event_type,json=eventType,proto3,enum=user.event.v1.EventType" json:"event_type,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	SyncCode      string                 `protobuf:"bytes,3,opt,name=sync_code,json=syncCode,proto3" json:"sync_code,omitempty"`
 	EventTime     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=event_time,json=eventTime,proto3" json:"event_time,omitempty"`
@@ -121,11 +121,11 @@ func (*UserEvent) Descriptor() ([]byte, []int) {
 	return file_user_event_v1_user_event_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *UserEvent) GetEventType() UserEvent_EventType {
+func (x *UserEvent) GetEventType() EventType {
 	if x != nil {
 		return x.EventType
 	}
-	return UserEvent_EVENT_TYPE_UNSPECIFIED
+	return EventType_EVENT_TYPE_UNSPECIFIED
 }
 
 func (x *UserEvent) GetUserId() string {
@@ -153,14 +153,14 @@ var File_user_event_v1_user_event_proto protoreflect.FileDescriptor
 
 const file_user_event_v1_user_event_proto_rawDesc = "" +
 	"\n" +
-	"\x1euser/event/v1/user_event.proto\x12\ruser.event.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a#third_party/validate/validate.proto\"\xe4\x02\n" +
-	"\tUserEvent\x12K\n" +
+	"\x1euser/event/v1/user_event.proto\x12\ruser.event.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a#third_party/validate/validate.proto\"\xd2\x01\n" +
+	"\tUserEvent\x12A\n" +
 	"\n" +
-	"event_type\x18\x01 \x01(\x0e2\".user.event.v1.UserEvent.EventTypeB\b\xfaB\x05\x82\x01\x02\x10\x01R\teventType\x12!\n" +
+	"event_type\x18\x01 \x01(\x0e2\x18.user.event.v1.EventTypeB\b\xfaB\x05\x82\x01\x02\x10\x01R\teventType\x12!\n" +
 	"\auser_id\x18\x02 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12$\n" +
 	"\tsync_code\x18\x03 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\bsyncCode\x129\n" +
 	"\n" +
-	"event_time\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\teventTime\"\x85\x01\n" +
+	"event_time\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\teventTime*\x85\x01\n" +
 	"\tEventType\x12\x1a\n" +
 	"\x16EVENT_TYPE_UNSPECIFIED\x10\x00\x12\x10\n" +
 	"\fUSER_DELETED\x10\x01\x12\x11\n" +
@@ -184,12 +184,12 @@ func file_user_event_v1_user_event_proto_rawDescGZIP() []byte {
 var file_user_event_v1_user_event_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_user_event_v1_user_event_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_user_event_v1_user_event_proto_goTypes = []any{
-	(UserEvent_EventType)(0),      // 0: user.event.v1.UserEvent.EventType
+	(EventType)(0),                // 0: user.event.v1.EventType
 	(*UserEvent)(nil),             // 1: user.event.v1.UserEvent
 	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
 }
 var file_user_event_v1_user_event_proto_depIdxs = []int32{
-	0, // 0: user.event.v1.UserEvent.event_type:type_name -> user.event.v1.UserEvent.EventType
+	0, // 0: user.event.v1.UserEvent.event_type:type_name -> user.event.v1.EventType
 	2, // 1: user.event.v1.UserEvent.event_time:type_name -> google.protobuf.Timestamp
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
