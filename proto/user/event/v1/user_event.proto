@@ -19,6 +19,7 @@ enum EventType {
 message UserEvent {
   EventType event_type = 1 [ (validate.rules).enum = {defined_only : true} ];
   string user_id = 2 [ (validate.rules).string = {uuid : true} ];
-  string sync_code = 3 [ (validate.rules).string = {min_len : 1} ];
+  optional string sync_code = 3
+      [ (validate.rules).string = {min_len : 1} ]; // Sync code for tracking
   google.protobuf.Timestamp event_time = 4;
 }
