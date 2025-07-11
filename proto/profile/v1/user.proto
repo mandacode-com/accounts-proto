@@ -45,9 +45,8 @@ message UpdateEmailRequest {
 }
 message UpdateEmailResponse {
   string user_id = 1 [ (validate.rules).string = {uuid : true} ];
-  string old_email = 2
-      [ (validate.rules).string = {email : true} ]; // Old email address
-  string new_email = 3
+  string updated_email = 2
       [ (validate.rules).string = {email : true} ]; // Updated email address
-  google.protobuf.Timestamp updated_at = 4; // Timestamp of the email update
+  google.protobuf.Timestamp updated_at =
+      3; // Timestamp when the email was updated
 }

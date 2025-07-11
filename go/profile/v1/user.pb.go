@@ -286,9 +286,8 @@ func (x *UpdateEmailRequest) GetNewEmail() string {
 type UpdateEmailResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	OldEmail      string                 `protobuf:"bytes,2,opt,name=old_email,json=oldEmail,proto3" json:"old_email,omitempty"`    // Old email address
-	NewEmail      string                 `protobuf:"bytes,3,opt,name=new_email,json=newEmail,proto3" json:"new_email,omitempty"`    // Updated email address
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"` // Timestamp of the email update
+	UpdatedEmail  string                 `protobuf:"bytes,2,opt,name=updated_email,json=updatedEmail,proto3" json:"updated_email,omitempty"` // Updated email address
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`          // Timestamp when the email was updated
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -330,16 +329,9 @@ func (x *UpdateEmailResponse) GetUserId() string {
 	return ""
 }
 
-func (x *UpdateEmailResponse) GetOldEmail() string {
+func (x *UpdateEmailResponse) GetUpdatedEmail() string {
 	if x != nil {
-		return x.OldEmail
-	}
-	return ""
-}
-
-func (x *UpdateEmailResponse) GetNewEmail() string {
-	if x != nil {
-		return x.NewEmail
+		return x.UpdatedEmail
 	}
 	return ""
 }
@@ -372,13 +364,12 @@ const file_profile_v1_user_proto_rawDesc = "" +
 	"deleted_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt\"]\n" +
 	"\x12UpdateEmailRequest\x12!\n" +
 	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12$\n" +
-	"\tnew_email\x18\x02 \x01(\tB\a\xfaB\x04r\x02`\x01R\bnewEmail\"\xbf\x01\n" +
+	"\tnew_email\x18\x02 \x01(\tB\a\xfaB\x04r\x02`\x01R\bnewEmail\"\xa1\x01\n" +
 	"\x13UpdateEmailResponse\x12!\n" +
-	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12$\n" +
-	"\told_email\x18\x02 \x01(\tB\a\xfaB\x04r\x02`\x01R\boldEmail\x12$\n" +
-	"\tnew_email\x18\x03 \x01(\tB\a\xfaB\x04r\x02`\x01R\bnewEmail\x129\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12,\n" +
+	"\rupdated_email\x18\x02 \x01(\tB\a\xfaB\x04r\x02`\x01R\fupdatedEmail\x129\n" +
 	"\n" +
-	"updated_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt2\xf4\x01\n" +
+	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt2\xf4\x01\n" +
 	"\x0eProfileService\x12E\n" +
 	"\bInitUser\x12\x1b.profile.v1.InitUserRequest\x1a\x1c.profile.v1.InitUserResponse\x12K\n" +
 	"\n" +

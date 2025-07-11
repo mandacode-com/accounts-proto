@@ -871,21 +871,9 @@ func (m *UpdateEmailResponse) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	if err := m._validateEmail(m.GetOldEmail()); err != nil {
+	if err := m._validateEmail(m.GetUpdatedEmail()); err != nil {
 		err = UpdateEmailResponseValidationError{
-			field:  "OldEmail",
-			reason: "value must be a valid email address",
-			cause:  err,
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
-
-	if err := m._validateEmail(m.GetNewEmail()); err != nil {
-		err = UpdateEmailResponseValidationError{
-			field:  "NewEmail",
+			field:  "UpdatedEmail",
 			reason: "value must be a valid email address",
 			cause:  err,
 		}
