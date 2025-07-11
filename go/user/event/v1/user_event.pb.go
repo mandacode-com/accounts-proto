@@ -85,7 +85,7 @@ type UserEvent struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EventType     EventType              `protobuf:"varint,1,opt,name=event_type,json=eventType,proto3,enum=user.event.v1.EventType" json:"event_type,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	SyncCode      string                 `protobuf:"bytes,3,opt,name=sync_code,json=syncCode,proto3" json:"sync_code,omitempty"`
+	SyncCode      *string                `protobuf:"bytes,3,opt,name=sync_code,json=syncCode,proto3,oneof" json:"sync_code,omitempty"` // Sync code for tracking
 	EventTime     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=event_time,json=eventTime,proto3" json:"event_time,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -136,8 +136,8 @@ func (x *UserEvent) GetUserId() string {
 }
 
 func (x *UserEvent) GetSyncCode() string {
-	if x != nil {
-		return x.SyncCode
+	if x != nil && x.SyncCode != nil {
+		return *x.SyncCode
 	}
 	return ""
 }
@@ -153,14 +153,16 @@ var File_user_event_v1_user_event_proto protoreflect.FileDescriptor
 
 const file_user_event_v1_user_event_proto_rawDesc = "" +
 	"\n" +
-	"\x1euser/event/v1/user_event.proto\x12\ruser.event.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a#third_party/validate/validate.proto\"\xd2\x01\n" +
+	"\x1euser/event/v1/user_event.proto\x12\ruser.event.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a#third_party/validate/validate.proto\"\xe5\x01\n" +
 	"\tUserEvent\x12A\n" +
 	"\n" +
 	"event_type\x18\x01 \x01(\x0e2\x18.user.event.v1.EventTypeB\b\xfaB\x05\x82\x01\x02\x10\x01R\teventType\x12!\n" +
-	"\auser_id\x18\x02 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12$\n" +
-	"\tsync_code\x18\x03 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\bsyncCode\x129\n" +
+	"\auser_id\x18\x02 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12)\n" +
+	"\tsync_code\x18\x03 \x01(\tB\a\xfaB\x04r\x02\x10\x01H\x00R\bsyncCode\x88\x01\x01\x129\n" +
 	"\n" +
-	"event_time\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\teventTime*\x85\x01\n" +
+	"event_time\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\teventTimeB\f\n" +
+	"\n" +
+	"_sync_code*\x85\x01\n" +
 	"\tEventType\x12\x1a\n" +
 	"\x16EVENT_TYPE_UNSPECIFIED\x10\x00\x12\x10\n" +
 	"\fUSER_DELETED\x10\x01\x12\x11\n" +
@@ -203,6 +205,7 @@ func file_user_event_v1_user_event_proto_init() {
 	if File_user_event_v1_user_event_proto != nil {
 		return
 	}
+	file_user_event_v1_user_event_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

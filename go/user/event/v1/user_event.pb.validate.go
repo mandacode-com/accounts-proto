@@ -83,17 +83,6 @@ func (m *UserEvent) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	if utf8.RuneCountInString(m.GetSyncCode()) < 1 {
-		err := UserEventValidationError{
-			field:  "SyncCode",
-			reason: "value length must be at least 1 runes",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
-
 	if all {
 		switch v := interface{}(m.GetEventTime()).(type) {
 		case interface{ ValidateAll() error }:
@@ -121,6 +110,21 @@ func (m *UserEvent) validate(all bool) error {
 				cause:  err,
 			}
 		}
+	}
+
+	if m.SyncCode != nil {
+
+		if utf8.RuneCountInString(m.GetSyncCode()) < 1 {
+			err := UserEventValidationError{
+				field:  "SyncCode",
+				reason: "value length must be at least 1 runes",
+			}
+			if !all {
+				return err
+			}
+			errors = append(errors, err)
+		}
+
 	}
 
 	if len(errors) > 0 {
