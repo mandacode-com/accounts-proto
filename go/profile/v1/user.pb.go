@@ -374,7 +374,7 @@ const file_profile_v1_user_proto_rawDesc = "" +
 	"\bInitUser\x12\x1b.profile.v1.InitUserRequest\x1a\x1c.profile.v1.InitUserResponse\x12K\n" +
 	"\n" +
 	"DeleteUser\x12\x1d.profile.v1.DeleteUserRequest\x1a\x1e.profile.v1.DeleteUserResponse\x12N\n" +
-	"\vUpdateEmail\x12\x1e.profile.v1.UpdateEmailRequest\x1a\x1f.profile.v1.UpdateEmailResponseB>Z<github.com/mandacode-com/accounts-proto/profile/v1;profilev1b\x06proto3"
+	"\vUpdateEmail\x12\x1e.profile.v1.UpdateEmailRequest\x1a\x1f.profile.v1.UpdateEmailResponseBAZ?github.com/mandacode-com/accounts-proto/go/profile/v1;profilev1b\x06proto3"
 
 var (
 	file_profile_v1_user_proto_rawDescOnce sync.Once

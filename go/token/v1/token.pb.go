@@ -689,7 +689,7 @@ const file_token_v1_token_proto_rawDesc = "" +
 	"\x14GenerateRefreshToken\x12%.token.v1.GenerateRefreshTokenRequest\x1a&.token.v1.GenerateRefreshTokenResponse\x12_\n" +
 	"\x12VerifyRefreshToken\x12#.token.v1.VerifyRefreshTokenRequest\x1a$.token.v1.VerifyRefreshTokenResponse\x12\x83\x01\n" +
 	"\x1eGenerateEmailVerificationToken\x12/.token.v1.GenerateEmailVerificationTokenRequest\x1a0.token.v1.GenerateEmailVerificationTokenResponse\x12}\n" +
-	"\x1cVerifyEmailVerificationToken\x12-.token.v1.VerifyEmailVerificationTokenRequest\x1a..token.v1.VerifyEmailVerificationTokenResponseB:Z8github.com/mandacode-com/accounts-proto/token/v1;tokenv1b\x06proto3"
+	"\x1cVerifyEmailVerificationToken\x12-.token.v1.VerifyEmailVerificationTokenRequest\x1a..token.v1.VerifyEmailVerificationTokenResponseB=Z;github.com/mandacode-com/accounts-proto/go/token/v1;tokenv1b\x06proto3"
 
 var (
 	file_token_v1_token_proto_rawDescOnce sync.Once

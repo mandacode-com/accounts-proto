@@ -5,7 +5,7 @@ package profile.v1;
 import "google/protobuf/timestamp.proto";
 import "third_party/validate/validate.proto";
 
-option go_package = "github.com/mandacode-com/accounts-proto/profile/v1;profilev1";
+option go_package = "github.com/mandacode-com/accounts-proto/go/profile/v1;profilev1";
 
 service ProfileService {
   // Initializes the user service

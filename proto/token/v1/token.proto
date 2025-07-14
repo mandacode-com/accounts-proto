@@ -4,7 +4,7 @@ package token.v1;
 
 import "third_party/validate/validate.proto";
 
-option go_package = "github.com/mandacode-com/accounts-proto/token/v1;tokenv1";
+option go_package = "github.com/mandacode-com/accounts-proto/go/token/v1;tokenv1";
 
 service TokenService {
   // Generates an access token for a user

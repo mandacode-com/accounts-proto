@@ -1,0 +1,107 @@
+syntax = "proto3";
+
+package auth.v1;
+
+import "google/protobuf/timestamp.proto";
+import "provider/v1/provider.proto";
+import "third_party/validate/validate.proto";
+
+option go_package = "github.com/mandacode-com/accounts-proto/go/auth/v1;authv1";
+
+service LocalUserService {
+  // CreateLocalUser creates a new local user with the provided details
+  rpc CreateLocalUser(CreateLocalUserRequest) returns (CreateLocalUserResponse);
+
+  // DeleteLocalUser deletes a local user by user ID
+  rpc DeleteLocalUser(DeleteLocalUserRequest) returns (DeleteLocalUserResponse);
+
+  // UpdateLocalUserEmail updates the user's email address
+  rpc UpdateLocalUserEmail(UpdateLocalUserEmailRequest)
+      returns (UpdateLocalUserEmailResponse);
+}
+
+message CreateLocalUserRequest {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+  string email = 2
+      [ (validate.rules).string = {email : true} ]; // User's email address
+  string password = 3
+      [ (validate.rules).string = {min_len : 8} ]; // User's password
+}
+message CreateLocalUserResponse {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+  google.protobuf.Timestamp created_at = 2; // User creation timestamp
+}
+
+message DeleteLocalUserRequest {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+}
+message DeleteLocalUserResponse {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+  google.protobuf.Timestamp deleted_at = 2; // User deletion timestamp
+}
+
+message UpdateLocalUserEmailRequest {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+  string new_email = 2
+      [ (validate.rules).string = {email : true} ]; // New email address
+}
+message UpdateLocalUserEmailResponse {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+  string updated_email = 2
+      [ (validate.rules).string = {email : true} ]; // Updated email address
+  google.protobuf.Timestamp updated_at =
+      3; // Timestamp when the email was updated
+}
+
+service OAuthUserService {
+  // CreateOAuthUser creates a new OAuth user with the provided details
+  rpc CreateOAuthUser(CreateOAuthUserRequest) returns (CreateOAuthUserResponse);
+
+  // DeleteOAuthUser deletes an OAuth user by user ID
+  rpc DeleteOAuthUser(DeleteOAuthUserRequest) returns (DeleteOAuthUserResponse);
+
+  // SyncOAuthUser synchronizes an OAuth user with the provided details
+  rpc SyncOAuthUser(SyncOAuthUserRequest) returns (SyncOAuthUserResponse);
+}
+
+message CreateOAuthUserRequest {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+  string email = 2
+      [ (validate.rules).string = {email : true} ]; // User's email address
+  provider.v1.ProviderType provider = 3;            // OAuth provider type
+  optional string access_token = 4
+      [ (validate.rules).string = {min_len : 1} ]; // OAuth access token
+  optional string code = 5 [
+    (validate.rules).string = {min_len : 1}
+  ]; // OAuth code for verification
+}
+message CreateOAuthUserResponse {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+  provider.v1.ProviderType provider = 2;    // OAuth provider type
+  google.protobuf.Timestamp created_at = 3; // User creation timestamp
+}
+
+message DeleteOAuthUserRequest {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+  provider.v1.ProviderType provider = 2; // OAuth provider type
+}
+message DeleteOAuthUserResponse {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+  provider.v1.ProviderType provider = 2;    // OAuth provider type
+  google.protobuf.Timestamp deleted_at = 3; // User deletion timestamp
+}
+
+message SyncOAuthUserRequest {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+  provider.v1.ProviderType provider = 2; // OAuth provider type
+  optional string access_token = 3
+      [ (validate.rules).string = {min_len : 1} ]; // OAuth access token
+  optional string code = 4 [
+    (validate.rules).string = {min_len : 1}
+  ]; // OAuth code for verification
+}
+message SyncOAuthUserResponse {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+  provider.v1.ProviderType provider = 2;   // OAuth provider type
+  google.protobuf.Timestamp synced_at = 3; // Timestamp when the user was synced
+}

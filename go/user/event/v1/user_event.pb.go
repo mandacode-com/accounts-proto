@@ -169,7 +169,7 @@ const file_user_event_v1_user_event_proto_rawDesc = "" +
 	"\rUSER_ARCHIVED\x10\x02\x12\x11\n" +
 	"\rUSER_RESTORED\x10\x03\x12\x10\n" +
 	"\fUSER_BLOCKED\x10\x04\x12\x12\n" +
-	"\x0eUSER_UNBLOCKED\x10\x05BCZAgithub.com/mandacode-com/accounts-proto/user/event/v1;usereventv1b\x06proto3"
+	"\x0eUSER_UNBLOCKED\x10\x05BFZDgithub.com/mandacode-com/accounts-proto/go/user/event/v1;usereventv1b\x06proto3"
 
 var (
 	file_user_event_v1_user_event_proto_rawDescOnce sync.Once

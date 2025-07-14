@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package provider.v1;
+
+option go_package = "github.com/mandacode-com/accounts-proto/go/provider/v1;providerv1";
+
+enum ProviderType {
+  PROVIDER_TYPE_UNSPECIFIED = 0; // Unspecified provider type
+  PROVIDER_TYPE_GOOGLE = 1;      // Google OAuth provider
+  PROVIDER_TYPE_KAKAO = 2;       // Kakao OAuth provider
+  PROVIDER_TYPE_NAVER = 3;       // Naver OAuth provider
+  PROVIDER_TYPE_APPLE = 4;       // Apple OAuth provider
+  PROVIDER_TYPE_GITHUB = 5;      // GitHub OAuth provider
+  PROVIDER_TYPE_GITLAB = 6;      // GitLab OAuth provider
+  PROVIDER_TYPE_FACEBOOK = 7;    // Facebook OAuth provider
+}
