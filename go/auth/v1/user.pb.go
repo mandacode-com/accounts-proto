@@ -347,10 +347,9 @@ func (x *UpdateLocalUserEmailResponse) GetUpdatedAt() *timestamppb.Timestamp {
 type CreateOAuthUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Email         string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`                                      // User's email address
-	Provider      v1.ProviderType        `protobuf:"varint,3,opt,name=provider,proto3,enum=provider.v1.ProviderType" json:"provider,omitempty"` // OAuth provider type
-	AccessToken   *string                `protobuf:"bytes,4,opt,name=access_token,json=accessToken,proto3,oneof" json:"access_token,omitempty"` // OAuth access token
-	Code          *string                `protobuf:"bytes,5,opt,name=code,proto3,oneof" json:"code,omitempty"`                                  // OAuth code for verification
+	Provider      v1.ProviderType        `protobuf:"varint,2,opt,name=provider,proto3,enum=provider.v1.ProviderType" json:"provider,omitempty"` // OAuth provider type
+	AccessToken   *string                `protobuf:"bytes,3,opt,name=access_token,json=accessToken,proto3,oneof" json:"access_token,omitempty"` // OAuth access token
+	Code          *string                `protobuf:"bytes,4,opt,name=code,proto3,oneof" json:"code,omitempty"`                                  // OAuth code for verification
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -392,13 +391,6 @@ func (x *CreateOAuthUserRequest) GetUserId() string {
 	return ""
 }
 
-func (x *CreateOAuthUserRequest) GetEmail() string {
-	if x != nil {
-		return x.Email
-	}
-	return ""
-}
-
 func (x *CreateOAuthUserRequest) GetProvider() v1.ProviderType {
 	if x != nil {
 		return x.Provider
@@ -424,7 +416,8 @@ type CreateOAuthUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Provider      v1.ProviderType        `protobuf:"varint,2,opt,name=provider,proto3,enum=provider.v1.ProviderType" json:"provider,omitempty"` // OAuth provider type
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`             // User creation timestamp
+	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`                                      // User's email address
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`             // User creation timestamp
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -471,6 +464,13 @@ func (x *CreateOAuthUserResponse) GetProvider() v1.ProviderType {
 		return x.Provider
 	}
 	return v1.ProviderType(0)
+}
+
+func (x *CreateOAuthUserResponse) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
 }
 
 func (x *CreateOAuthUserResponse) GetCreatedAt() *timestamppb.Timestamp {
@@ -746,20 +746,20 @@ const file_auth_v1_user_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12,\n" +
 	"\rupdated_email\x18\x02 \x01(\tB\a\xfaB\x04r\x02`\x01R\fupdatedEmail\x129\n" +
 	"\n" +
-	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xfe\x01\n" +
+	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xdf\x01\n" +
 	"\x16CreateOAuthUserRequest\x12!\n" +
-	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12\x1d\n" +
-	"\x05email\x18\x02 \x01(\tB\a\xfaB\x04r\x02`\x01R\x05email\x125\n" +
-	"\bprovider\x18\x03 \x01(\x0e2\x19.provider.v1.ProviderTypeR\bprovider\x12/\n" +
-	"\faccess_token\x18\x04 \x01(\tB\a\xfaB\x04r\x02\x10\x01H\x00R\vaccessToken\x88\x01\x01\x12 \n" +
-	"\x04code\x18\x05 \x01(\tB\a\xfaB\x04r\x02\x10\x01H\x01R\x04code\x88\x01\x01B\x0f\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x125\n" +
+	"\bprovider\x18\x02 \x01(\x0e2\x19.provider.v1.ProviderTypeR\bprovider\x12/\n" +
+	"\faccess_token\x18\x03 \x01(\tB\a\xfaB\x04r\x02\x10\x01H\x00R\vaccessToken\x88\x01\x01\x12 \n" +
+	"\x04code\x18\x04 \x01(\tB\a\xfaB\x04r\x02\x10\x01H\x01R\x04code\x88\x01\x01B\x0f\n" +
 	"\r_access_tokenB\a\n" +
-	"\x05_code\"\xae\x01\n" +
+	"\x05_code\"\xcd\x01\n" +
 	"\x17CreateOAuthUserResponse\x12!\n" +
 	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x125\n" +
-	"\bprovider\x18\x02 \x01(\x0e2\x19.provider.v1.ProviderTypeR\bprovider\x129\n" +
+	"\bprovider\x18\x02 \x01(\x0e2\x19.provider.v1.ProviderTypeR\bprovider\x12\x1d\n" +
+	"\x05email\x18\x03 \x01(\tB\a\xfaB\x04r\x02`\x01R\x05email\x129\n" +
 	"\n" +
-	"created_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"r\n" +
+	"created_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"r\n" +
 	"\x16DeleteOAuthUserRequest\x12!\n" +
 	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x125\n" +
 	"\bprovider\x18\x02 \x01(\x0e2\x19.provider.v1.ProviderTypeR\bprovider\"\xae\x01\n" +

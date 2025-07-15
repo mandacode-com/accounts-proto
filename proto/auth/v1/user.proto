@@ -66,19 +66,19 @@ service OAuthUserService {
 
 message CreateOAuthUserRequest {
   string user_id = 1 [ (validate.rules).string = {uuid : true} ];
-  string email = 2
-      [ (validate.rules).string = {email : true} ]; // User's email address
-  provider.v1.ProviderType provider = 3;            // OAuth provider type
-  optional string access_token = 4
+  provider.v1.ProviderType provider = 2; // OAuth provider type
+  optional string access_token = 3
       [ (validate.rules).string = {min_len : 1} ]; // OAuth access token
-  optional string code = 5 [
+  optional string code = 4 [
     (validate.rules).string = {min_len : 1}
   ]; // OAuth code for verification
 }
 message CreateOAuthUserResponse {
   string user_id = 1 [ (validate.rules).string = {uuid : true} ];
-  provider.v1.ProviderType provider = 2;    // OAuth provider type
-  google.protobuf.Timestamp created_at = 3; // User creation timestamp
+  provider.v1.ProviderType provider = 2; // OAuth provider type
+  string email = 3
+      [ (validate.rules).string = {email : true} ]; // User's email address
+  google.protobuf.Timestamp created_at = 4;         // User creation timestamp
 }
 
 message DeleteOAuthUserRequest {
