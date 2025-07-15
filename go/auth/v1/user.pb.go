@@ -344,6 +344,118 @@ func (x *UpdateLocalUserEmailResponse) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+type UpdateEmailVerificationRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Verified      bool                   `protobuf:"varint,2,opt,name=verified,proto3" json:"verified,omitempty"` // Email verification status
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateEmailVerificationRequest) Reset() {
+	*x = UpdateEmailVerificationRequest{}
+	mi := &file_auth_v1_user_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateEmailVerificationRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateEmailVerificationRequest) ProtoMessage() {}
+
+func (x *UpdateEmailVerificationRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_user_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateEmailVerificationRequest.ProtoReflect.Descriptor instead.
+func (*UpdateEmailVerificationRequest) Descriptor() ([]byte, []int) {
+	return file_auth_v1_user_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *UpdateEmailVerificationRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UpdateEmailVerificationRequest) GetVerified() bool {
+	if x != nil {
+		return x.Verified
+	}
+	return false
+}
+
+type UpdateEmailVerificationResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Verified      bool                   `protobuf:"varint,2,opt,name=verified,proto3" json:"verified,omitempty"`                   // Email verification status
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"` // Timestamp when the email verification status was updated
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateEmailVerificationResponse) Reset() {
+	*x = UpdateEmailVerificationResponse{}
+	mi := &file_auth_v1_user_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateEmailVerificationResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateEmailVerificationResponse) ProtoMessage() {}
+
+func (x *UpdateEmailVerificationResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_user_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateEmailVerificationResponse.ProtoReflect.Descriptor instead.
+func (*UpdateEmailVerificationResponse) Descriptor() ([]byte, []int) {
+	return file_auth_v1_user_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *UpdateEmailVerificationResponse) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UpdateEmailVerificationResponse) GetVerified() bool {
+	if x != nil {
+		return x.Verified
+	}
+	return false
+}
+
+func (x *UpdateEmailVerificationResponse) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
 type CreateOAuthUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -356,7 +468,7 @@ type CreateOAuthUserRequest struct {
 
 func (x *CreateOAuthUserRequest) Reset() {
 	*x = CreateOAuthUserRequest{}
-	mi := &file_auth_v1_user_proto_msgTypes[6]
+	mi := &file_auth_v1_user_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -368,7 +480,7 @@ func (x *CreateOAuthUserRequest) String() string {
 func (*CreateOAuthUserRequest) ProtoMessage() {}
 
 func (x *CreateOAuthUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_user_proto_msgTypes[6]
+	mi := &file_auth_v1_user_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -381,7 +493,7 @@ func (x *CreateOAuthUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateOAuthUserRequest.ProtoReflect.Descriptor instead.
 func (*CreateOAuthUserRequest) Descriptor() ([]byte, []int) {
-	return file_auth_v1_user_proto_rawDescGZIP(), []int{6}
+	return file_auth_v1_user_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *CreateOAuthUserRequest) GetUserId() string {
@@ -424,7 +536,7 @@ type CreateOAuthUserResponse struct {
 
 func (x *CreateOAuthUserResponse) Reset() {
 	*x = CreateOAuthUserResponse{}
-	mi := &file_auth_v1_user_proto_msgTypes[7]
+	mi := &file_auth_v1_user_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -436,7 +548,7 @@ func (x *CreateOAuthUserResponse) String() string {
 func (*CreateOAuthUserResponse) ProtoMessage() {}
 
 func (x *CreateOAuthUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_user_proto_msgTypes[7]
+	mi := &file_auth_v1_user_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -449,7 +561,7 @@ func (x *CreateOAuthUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateOAuthUserResponse.ProtoReflect.Descriptor instead.
 func (*CreateOAuthUserResponse) Descriptor() ([]byte, []int) {
-	return file_auth_v1_user_proto_rawDescGZIP(), []int{7}
+	return file_auth_v1_user_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *CreateOAuthUserResponse) GetUserId() string {
@@ -490,7 +602,7 @@ type DeleteOAuthUserRequest struct {
 
 func (x *DeleteOAuthUserRequest) Reset() {
 	*x = DeleteOAuthUserRequest{}
-	mi := &file_auth_v1_user_proto_msgTypes[8]
+	mi := &file_auth_v1_user_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -502,7 +614,7 @@ func (x *DeleteOAuthUserRequest) String() string {
 func (*DeleteOAuthUserRequest) ProtoMessage() {}
 
 func (x *DeleteOAuthUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_user_proto_msgTypes[8]
+	mi := &file_auth_v1_user_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -515,7 +627,7 @@ func (x *DeleteOAuthUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteOAuthUserRequest.ProtoReflect.Descriptor instead.
 func (*DeleteOAuthUserRequest) Descriptor() ([]byte, []int) {
-	return file_auth_v1_user_proto_rawDescGZIP(), []int{8}
+	return file_auth_v1_user_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *DeleteOAuthUserRequest) GetUserId() string {
@@ -543,7 +655,7 @@ type DeleteOAuthUserResponse struct {
 
 func (x *DeleteOAuthUserResponse) Reset() {
 	*x = DeleteOAuthUserResponse{}
-	mi := &file_auth_v1_user_proto_msgTypes[9]
+	mi := &file_auth_v1_user_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -555,7 +667,7 @@ func (x *DeleteOAuthUserResponse) String() string {
 func (*DeleteOAuthUserResponse) ProtoMessage() {}
 
 func (x *DeleteOAuthUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_user_proto_msgTypes[9]
+	mi := &file_auth_v1_user_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -568,7 +680,7 @@ func (x *DeleteOAuthUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteOAuthUserResponse.ProtoReflect.Descriptor instead.
 func (*DeleteOAuthUserResponse) Descriptor() ([]byte, []int) {
-	return file_auth_v1_user_proto_rawDescGZIP(), []int{9}
+	return file_auth_v1_user_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *DeleteOAuthUserResponse) GetUserId() string {
@@ -604,7 +716,7 @@ type SyncOAuthUserRequest struct {
 
 func (x *SyncOAuthUserRequest) Reset() {
 	*x = SyncOAuthUserRequest{}
-	mi := &file_auth_v1_user_proto_msgTypes[10]
+	mi := &file_auth_v1_user_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -616,7 +728,7 @@ func (x *SyncOAuthUserRequest) String() string {
 func (*SyncOAuthUserRequest) ProtoMessage() {}
 
 func (x *SyncOAuthUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_user_proto_msgTypes[10]
+	mi := &file_auth_v1_user_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -629,7 +741,7 @@ func (x *SyncOAuthUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncOAuthUserRequest.ProtoReflect.Descriptor instead.
 func (*SyncOAuthUserRequest) Descriptor() ([]byte, []int) {
-	return file_auth_v1_user_proto_rawDescGZIP(), []int{10}
+	return file_auth_v1_user_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *SyncOAuthUserRequest) GetUserId() string {
@@ -671,7 +783,7 @@ type SyncOAuthUserResponse struct {
 
 func (x *SyncOAuthUserResponse) Reset() {
 	*x = SyncOAuthUserResponse{}
-	mi := &file_auth_v1_user_proto_msgTypes[11]
+	mi := &file_auth_v1_user_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -683,7 +795,7 @@ func (x *SyncOAuthUserResponse) String() string {
 func (*SyncOAuthUserResponse) ProtoMessage() {}
 
 func (x *SyncOAuthUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_user_proto_msgTypes[11]
+	mi := &file_auth_v1_user_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -696,7 +808,7 @@ func (x *SyncOAuthUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncOAuthUserResponse.ProtoReflect.Descriptor instead.
 func (*SyncOAuthUserResponse) Descriptor() ([]byte, []int) {
-	return file_auth_v1_user_proto_rawDescGZIP(), []int{11}
+	return file_auth_v1_user_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *SyncOAuthUserResponse) GetUserId() string {
@@ -746,6 +858,14 @@ const file_auth_v1_user_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12,\n" +
 	"\rupdated_email\x18\x02 \x01(\tB\a\xfaB\x04r\x02`\x01R\fupdatedEmail\x129\n" +
 	"\n" +
+	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"_\n" +
+	"\x1eUpdateEmailVerificationRequest\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12\x1a\n" +
+	"\bverified\x18\x02 \x01(\bR\bverified\"\x9b\x01\n" +
+	"\x1fUpdateEmailVerificationResponse\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x12\x1a\n" +
+	"\bverified\x18\x02 \x01(\bR\bverified\x129\n" +
+	"\n" +
 	"updated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xdf\x01\n" +
 	"\x16CreateOAuthUserRequest\x12!\n" +
 	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x125\n" +
@@ -778,11 +898,12 @@ const file_auth_v1_user_proto_rawDesc = "" +
 	"\x15SyncOAuthUserResponse\x12!\n" +
 	"\auser_id\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x06userId\x125\n" +
 	"\bprovider\x18\x02 \x01(\x0e2\x19.provider.v1.ProviderTypeR\bprovider\x127\n" +
-	"\tsynced_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\bsyncedAt2\xa3\x02\n" +
+	"\tsynced_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\bsyncedAt2\x91\x03\n" +
 	"\x10LocalUserService\x12T\n" +
 	"\x0fCreateLocalUser\x12\x1f.auth.v1.CreateLocalUserRequest\x1a .auth.v1.CreateLocalUserResponse\x12T\n" +
 	"\x0fDeleteLocalUser\x12\x1f.auth.v1.DeleteLocalUserRequest\x1a .auth.v1.DeleteLocalUserResponse\x12c\n" +
-	"\x14UpdateLocalUserEmail\x12$.auth.v1.UpdateLocalUserEmailRequest\x1a%.auth.v1.UpdateLocalUserEmailResponse2\x8e\x02\n" +
+	"\x14UpdateLocalUserEmail\x12$.auth.v1.UpdateLocalUserEmailRequest\x1a%.auth.v1.UpdateLocalUserEmailResponse\x12l\n" +
+	"\x17UpdateEmailVerification\x12'.auth.v1.UpdateEmailVerificationRequest\x1a(.auth.v1.UpdateEmailVerificationResponse2\x8e\x02\n" +
 	"\x10OAuthUserService\x12T\n" +
 	"\x0fCreateOAuthUser\x12\x1f.auth.v1.CreateOAuthUserRequest\x1a .auth.v1.CreateOAuthUserResponse\x12T\n" +
 	"\x0fDeleteOAuthUser\x12\x1f.auth.v1.DeleteOAuthUserRequest\x1a .auth.v1.DeleteOAuthUserResponse\x12N\n" +
@@ -800,53 +921,58 @@ func file_auth_v1_user_proto_rawDescGZIP() []byte {
 	return file_auth_v1_user_proto_rawDescData
 }
 
-var file_auth_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_auth_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_auth_v1_user_proto_goTypes = []any{
-	(*CreateLocalUserRequest)(nil),       // 0: auth.v1.CreateLocalUserRequest
-	(*CreateLocalUserResponse)(nil),      // 1: auth.v1.CreateLocalUserResponse
-	(*DeleteLocalUserRequest)(nil),       // 2: auth.v1.DeleteLocalUserRequest
-	(*DeleteLocalUserResponse)(nil),      // 3: auth.v1.DeleteLocalUserResponse
-	(*UpdateLocalUserEmailRequest)(nil),  // 4: auth.v1.UpdateLocalUserEmailRequest
-	(*UpdateLocalUserEmailResponse)(nil), // 5: auth.v1.UpdateLocalUserEmailResponse
-	(*CreateOAuthUserRequest)(nil),       // 6: auth.v1.CreateOAuthUserRequest
-	(*CreateOAuthUserResponse)(nil),      // 7: auth.v1.CreateOAuthUserResponse
-	(*DeleteOAuthUserRequest)(nil),       // 8: auth.v1.DeleteOAuthUserRequest
-	(*DeleteOAuthUserResponse)(nil),      // 9: auth.v1.DeleteOAuthUserResponse
-	(*SyncOAuthUserRequest)(nil),         // 10: auth.v1.SyncOAuthUserRequest
-	(*SyncOAuthUserResponse)(nil),        // 11: auth.v1.SyncOAuthUserResponse
-	(*timestamppb.Timestamp)(nil),        // 12: google.protobuf.Timestamp
-	(v1.ProviderType)(0),                 // 13: provider.v1.ProviderType
+	(*CreateLocalUserRequest)(nil),          // 0: auth.v1.CreateLocalUserRequest
+	(*CreateLocalUserResponse)(nil),         // 1: auth.v1.CreateLocalUserResponse
+	(*DeleteLocalUserRequest)(nil),          // 2: auth.v1.DeleteLocalUserRequest
+	(*DeleteLocalUserResponse)(nil),         // 3: auth.v1.DeleteLocalUserResponse
+	(*UpdateLocalUserEmailRequest)(nil),     // 4: auth.v1.UpdateLocalUserEmailRequest
+	(*UpdateLocalUserEmailResponse)(nil),    // 5: auth.v1.UpdateLocalUserEmailResponse
+	(*UpdateEmailVerificationRequest)(nil),  // 6: auth.v1.UpdateEmailVerificationRequest
+	(*UpdateEmailVerificationResponse)(nil), // 7: auth.v1.UpdateEmailVerificationResponse
+	(*CreateOAuthUserRequest)(nil),          // 8: auth.v1.CreateOAuthUserRequest
+	(*CreateOAuthUserResponse)(nil),         // 9: auth.v1.CreateOAuthUserResponse
+	(*DeleteOAuthUserRequest)(nil),          // 10: auth.v1.DeleteOAuthUserRequest
+	(*DeleteOAuthUserResponse)(nil),         // 11: auth.v1.DeleteOAuthUserResponse
+	(*SyncOAuthUserRequest)(nil),            // 12: auth.v1.SyncOAuthUserRequest
+	(*SyncOAuthUserResponse)(nil),           // 13: auth.v1.SyncOAuthUserResponse
+	(*timestamppb.Timestamp)(nil),           // 14: google.protobuf.Timestamp
+	(v1.ProviderType)(0),                    // 15: provider.v1.ProviderType
 }
 var file_auth_v1_user_proto_depIdxs = []int32{
-	12, // 0: auth.v1.CreateLocalUserResponse.created_at:type_name -> google.protobuf.Timestamp
-	12, // 1: auth.v1.DeleteLocalUserResponse.deleted_at:type_name -> google.protobuf.Timestamp
-	12, // 2: auth.v1.UpdateLocalUserEmailResponse.updated_at:type_name -> google.protobuf.Timestamp
-	13, // 3: auth.v1.CreateOAuthUserRequest.provider:type_name -> provider.v1.ProviderType
-	13, // 4: auth.v1.CreateOAuthUserResponse.provider:type_name -> provider.v1.ProviderType
-	12, // 5: auth.v1.CreateOAuthUserResponse.created_at:type_name -> google.protobuf.Timestamp
-	13, // 6: auth.v1.DeleteOAuthUserRequest.provider:type_name -> provider.v1.ProviderType
-	13, // 7: auth.v1.DeleteOAuthUserResponse.provider:type_name -> provider.v1.ProviderType
-	12, // 8: auth.v1.DeleteOAuthUserResponse.deleted_at:type_name -> google.protobuf.Timestamp
-	13, // 9: auth.v1.SyncOAuthUserRequest.provider:type_name -> provider.v1.ProviderType
-	13, // 10: auth.v1.SyncOAuthUserResponse.provider:type_name -> provider.v1.ProviderType
-	12, // 11: auth.v1.SyncOAuthUserResponse.synced_at:type_name -> google.protobuf.Timestamp
-	0,  // 12: auth.v1.LocalUserService.CreateLocalUser:input_type -> auth.v1.CreateLocalUserRequest
-	2,  // 13: auth.v1.LocalUserService.DeleteLocalUser:input_type -> auth.v1.DeleteLocalUserRequest
-	4,  // 14: auth.v1.LocalUserService.UpdateLocalUserEmail:input_type -> auth.v1.UpdateLocalUserEmailRequest
-	6,  // 15: auth.v1.OAuthUserService.CreateOAuthUser:input_type -> auth.v1.CreateOAuthUserRequest
-	8,  // 16: auth.v1.OAuthUserService.DeleteOAuthUser:input_type -> auth.v1.DeleteOAuthUserRequest
-	10, // 17: auth.v1.OAuthUserService.SyncOAuthUser:input_type -> auth.v1.SyncOAuthUserRequest
-	1,  // 18: auth.v1.LocalUserService.CreateLocalUser:output_type -> auth.v1.CreateLocalUserResponse
-	3,  // 19: auth.v1.LocalUserService.DeleteLocalUser:output_type -> auth.v1.DeleteLocalUserResponse
-	5,  // 20: auth.v1.LocalUserService.UpdateLocalUserEmail:output_type -> auth.v1.UpdateLocalUserEmailResponse
-	7,  // 21: auth.v1.OAuthUserService.CreateOAuthUser:output_type -> auth.v1.CreateOAuthUserResponse
-	9,  // 22: auth.v1.OAuthUserService.DeleteOAuthUser:output_type -> auth.v1.DeleteOAuthUserResponse
-	11, // 23: auth.v1.OAuthUserService.SyncOAuthUser:output_type -> auth.v1.SyncOAuthUserResponse
-	18, // [18:24] is the sub-list for method output_type
-	12, // [12:18] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	14, // 0: auth.v1.CreateLocalUserResponse.created_at:type_name -> google.protobuf.Timestamp
+	14, // 1: auth.v1.DeleteLocalUserResponse.deleted_at:type_name -> google.protobuf.Timestamp
+	14, // 2: auth.v1.UpdateLocalUserEmailResponse.updated_at:type_name -> google.protobuf.Timestamp
+	14, // 3: auth.v1.UpdateEmailVerificationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	15, // 4: auth.v1.CreateOAuthUserRequest.provider:type_name -> provider.v1.ProviderType
+	15, // 5: auth.v1.CreateOAuthUserResponse.provider:type_name -> provider.v1.ProviderType
+	14, // 6: auth.v1.CreateOAuthUserResponse.created_at:type_name -> google.protobuf.Timestamp
+	15, // 7: auth.v1.DeleteOAuthUserRequest.provider:type_name -> provider.v1.ProviderType
+	15, // 8: auth.v1.DeleteOAuthUserResponse.provider:type_name -> provider.v1.ProviderType
+	14, // 9: auth.v1.DeleteOAuthUserResponse.deleted_at:type_name -> google.protobuf.Timestamp
+	15, // 10: auth.v1.SyncOAuthUserRequest.provider:type_name -> provider.v1.ProviderType
+	15, // 11: auth.v1.SyncOAuthUserResponse.provider:type_name -> provider.v1.ProviderType
+	14, // 12: auth.v1.SyncOAuthUserResponse.synced_at:type_name -> google.protobuf.Timestamp
+	0,  // 13: auth.v1.LocalUserService.CreateLocalUser:input_type -> auth.v1.CreateLocalUserRequest
+	2,  // 14: auth.v1.LocalUserService.DeleteLocalUser:input_type -> auth.v1.DeleteLocalUserRequest
+	4,  // 15: auth.v1.LocalUserService.UpdateLocalUserEmail:input_type -> auth.v1.UpdateLocalUserEmailRequest
+	6,  // 16: auth.v1.LocalUserService.UpdateEmailVerification:input_type -> auth.v1.UpdateEmailVerificationRequest
+	8,  // 17: auth.v1.OAuthUserService.CreateOAuthUser:input_type -> auth.v1.CreateOAuthUserRequest
+	10, // 18: auth.v1.OAuthUserService.DeleteOAuthUser:input_type -> auth.v1.DeleteOAuthUserRequest
+	12, // 19: auth.v1.OAuthUserService.SyncOAuthUser:input_type -> auth.v1.SyncOAuthUserRequest
+	1,  // 20: auth.v1.LocalUserService.CreateLocalUser:output_type -> auth.v1.CreateLocalUserResponse
+	3,  // 21: auth.v1.LocalUserService.DeleteLocalUser:output_type -> auth.v1.DeleteLocalUserResponse
+	5,  // 22: auth.v1.LocalUserService.UpdateLocalUserEmail:output_type -> auth.v1.UpdateLocalUserEmailResponse
+	7,  // 23: auth.v1.LocalUserService.UpdateEmailVerification:output_type -> auth.v1.UpdateEmailVerificationResponse
+	9,  // 24: auth.v1.OAuthUserService.CreateOAuthUser:output_type -> auth.v1.CreateOAuthUserResponse
+	11, // 25: auth.v1.OAuthUserService.DeleteOAuthUser:output_type -> auth.v1.DeleteOAuthUserResponse
+	13, // 26: auth.v1.OAuthUserService.SyncOAuthUser:output_type -> auth.v1.SyncOAuthUserResponse
+	20, // [20:27] is the sub-list for method output_type
+	13, // [13:20] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_auth_v1_user_proto_init() }
@@ -854,15 +980,15 @@ func file_auth_v1_user_proto_init() {
 	if File_auth_v1_user_proto != nil {
 		return
 	}
-	file_auth_v1_user_proto_msgTypes[6].OneofWrappers = []any{}
-	file_auth_v1_user_proto_msgTypes[10].OneofWrappers = []any{}
+	file_auth_v1_user_proto_msgTypes[8].OneofWrappers = []any{}
+	file_auth_v1_user_proto_msgTypes[12].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_v1_user_proto_rawDesc), len(file_auth_v1_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   2,
 		},

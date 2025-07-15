@@ -18,6 +18,10 @@ service LocalUserService {
   // UpdateLocalUserEmail updates the user's email address
   rpc UpdateLocalUserEmail(UpdateLocalUserEmailRequest)
       returns (UpdateLocalUserEmailResponse);
+
+  // UpdateEmailVerification sets the email verification status for a user
+  rpc UpdateEmailVerification(UpdateEmailVerificationRequest)
+      returns (UpdateEmailVerificationResponse);
 }
 
 message CreateLocalUserRequest {
@@ -51,6 +55,17 @@ message UpdateLocalUserEmailResponse {
       [ (validate.rules).string = {email : true} ]; // Updated email address
   google.protobuf.Timestamp updated_at =
       3; // Timestamp when the email was updated
+}
+
+message UpdateEmailVerificationRequest {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+  bool verified = 2; // Email verification status
+}
+message UpdateEmailVerificationResponse {
+  string user_id = 1 [ (validate.rules).string = {uuid : true} ];
+  bool verified = 2; // Email verification status
+  google.protobuf.Timestamp updated_at =
+      3; // Timestamp when the email verification status was updated
 }
 
 service OAuthUserService {

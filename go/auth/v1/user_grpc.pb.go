@@ -19,9 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	LocalUserService_CreateLocalUser_FullMethodName      = "/auth.v1.LocalUserService/CreateLocalUser"
-	LocalUserService_DeleteLocalUser_FullMethodName      = "/auth.v1.LocalUserService/DeleteLocalUser"
-	LocalUserService_UpdateLocalUserEmail_FullMethodName = "/auth.v1.LocalUserService/UpdateLocalUserEmail"
+	LocalUserService_CreateLocalUser_FullMethodName         = "/auth.v1.LocalUserService/CreateLocalUser"
+	LocalUserService_DeleteLocalUser_FullMethodName         = "/auth.v1.LocalUserService/DeleteLocalUser"
+	LocalUserService_UpdateLocalUserEmail_FullMethodName    = "/auth.v1.LocalUserService/UpdateLocalUserEmail"
+	LocalUserService_UpdateEmailVerification_FullMethodName = "/auth.v1.LocalUserService/UpdateEmailVerification"
 )
 
 // LocalUserServiceClient is the client API for LocalUserService service.
@@ -34,6 +35,8 @@ type LocalUserServiceClient interface {
 	DeleteLocalUser(ctx context.Context, in *DeleteLocalUserRequest, opts ...grpc.CallOption) (*DeleteLocalUserResponse, error)
 	// UpdateLocalUserEmail updates the user's email address
 	UpdateLocalUserEmail(ctx context.Context, in *UpdateLocalUserEmailRequest, opts ...grpc.CallOption) (*UpdateLocalUserEmailResponse, error)
+	// UpdateEmailVerification sets the email verification status for a user
+	UpdateEmailVerification(ctx context.Context, in *UpdateEmailVerificationRequest, opts ...grpc.CallOption) (*UpdateEmailVerificationResponse, error)
 }
 
 type localUserServiceClient struct {
@@ -74,6 +77,16 @@ func (c *localUserServiceClient) UpdateLocalUserEmail(ctx context.Context, in *U
 	return out, nil
 }
 
+func (c *localUserServiceClient) UpdateEmailVerification(ctx context.Context, in *UpdateEmailVerificationRequest, opts ...grpc.CallOption) (*UpdateEmailVerificationResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateEmailVerificationResponse)
+	err := c.cc.Invoke(ctx, LocalUserService_UpdateEmailVerification_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // LocalUserServiceServer is the server API for LocalUserService service.
 // All implementations must embed UnimplementedLocalUserServiceServer
 // for forward compatibility.
@@ -84,6 +97,8 @@ type LocalUserServiceServer interface {
 	DeleteLocalUser(context.Context, *DeleteLocalUserRequest) (*DeleteLocalUserResponse, error)
 	// UpdateLocalUserEmail updates the user's email address
 	UpdateLocalUserEmail(context.Context, *UpdateLocalUserEmailRequest) (*UpdateLocalUserEmailResponse, error)
+	// UpdateEmailVerification sets the email verification status for a user
+	UpdateEmailVerification(context.Context, *UpdateEmailVerificationRequest) (*UpdateEmailVerificationResponse, error)
 	mustEmbedUnimplementedLocalUserServiceServer()
 }
 
@@ -102,6 +117,9 @@ func (UnimplementedLocalUserServiceServer) DeleteLocalUser(context.Context, *Del
 }
 func (UnimplementedLocalUserServiceServer) UpdateLocalUserEmail(context.Context, *UpdateLocalUserEmailRequest) (*UpdateLocalUserEmailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateLocalUserEmail not implemented")
+}
+func (UnimplementedLocalUserServiceServer) UpdateEmailVerification(context.Context, *UpdateEmailVerificationRequest) (*UpdateEmailVerificationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateEmailVerification not implemented")
 }
 func (UnimplementedLocalUserServiceServer) mustEmbedUnimplementedLocalUserServiceServer() {}
 func (UnimplementedLocalUserServiceServer) testEmbeddedByValue()                          {}
@@ -178,6 +196,24 @@ func _LocalUserService_UpdateLocalUserEmail_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _LocalUserService_UpdateEmailVerification_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateEmailVerificationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LocalUserServiceServer).UpdateEmailVerification(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LocalUserService_UpdateEmailVerification_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LocalUserServiceServer).UpdateEmailVerification(ctx, req.(*UpdateEmailVerificationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // LocalUserService_ServiceDesc is the grpc.ServiceDesc for LocalUserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -196,6 +232,10 @@ var LocalUserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateLocalUserEmail",
 			Handler:    _LocalUserService_UpdateLocalUserEmail_Handler,
+		},
+		{
+			MethodName: "UpdateEmailVerification",
+			Handler:    _LocalUserService_UpdateEmailVerification_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
