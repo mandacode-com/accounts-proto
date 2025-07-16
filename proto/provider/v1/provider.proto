@@ -6,11 +6,12 @@ option go_package = "github.com/mandacode-com/accounts-proto/go/provider/v1;prov
 
 enum ProviderType {
   PROVIDER_TYPE_UNSPECIFIED = 0; // Unspecified provider type
-  PROVIDER_TYPE_GOOGLE = 1;      // Google OAuth provider
-  PROVIDER_TYPE_KAKAO = 2;       // Kakao OAuth provider
-  PROVIDER_TYPE_NAVER = 3;       // Naver OAuth provider
-  PROVIDER_TYPE_APPLE = 4;       // Apple OAuth provider
-  PROVIDER_TYPE_GITHUB = 5;      // GitHub OAuth provider
-  PROVIDER_TYPE_GITLAB = 6;      // GitLab OAuth provider
-  PROVIDER_TYPE_FACEBOOK = 7;    // Facebook OAuth provider
+  PROVIDER_TYPE_LOCAL = 1;       // Local user provider
+  PROVIDER_TYPE_GOOGLE = 2;      // Google OAuth provider
+  PROVIDER_TYPE_KAKAO = 3;       // Kakao OAuth provider
+  PROVIDER_TYPE_NAVER = 4;       // Naver OAuth provider
+  PROVIDER_TYPE_APPLE = 5;       // Apple OAuth provider
+  PROVIDER_TYPE_GITHUB = 6;      // GitHub OAuth provider
+  PROVIDER_TYPE_GITLAB = 7;      // GitLab OAuth provider
+  PROVIDER_TYPE_FACEBOOK = 8;    // Facebook OAuth provider
 }

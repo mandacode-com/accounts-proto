@@ -25,36 +25,39 @@ type ProviderType int32
 
 const (
 	ProviderType_PROVIDER_TYPE_UNSPECIFIED ProviderType = 0 // Unspecified provider type
-	ProviderType_PROVIDER_TYPE_GOOGLE      ProviderType = 1 // Google OAuth provider
-	ProviderType_PROVIDER_TYPE_KAKAO       ProviderType = 2 // Kakao OAuth provider
-	ProviderType_PROVIDER_TYPE_NAVER       ProviderType = 3 // Naver OAuth provider
-	ProviderType_PROVIDER_TYPE_APPLE       ProviderType = 4 // Apple OAuth provider
-	ProviderType_PROVIDER_TYPE_GITHUB      ProviderType = 5 // GitHub OAuth provider
-	ProviderType_PROVIDER_TYPE_GITLAB      ProviderType = 6 // GitLab OAuth provider
-	ProviderType_PROVIDER_TYPE_FACEBOOK    ProviderType = 7 // Facebook OAuth provider
+	ProviderType_PROVIDER_TYPE_LOCAL       ProviderType = 1 // Local user provider
+	ProviderType_PROVIDER_TYPE_GOOGLE      ProviderType = 2 // Google OAuth provider
+	ProviderType_PROVIDER_TYPE_KAKAO       ProviderType = 3 // Kakao OAuth provider
+	ProviderType_PROVIDER_TYPE_NAVER       ProviderType = 4 // Naver OAuth provider
+	ProviderType_PROVIDER_TYPE_APPLE       ProviderType = 5 // Apple OAuth provider
+	ProviderType_PROVIDER_TYPE_GITHUB      ProviderType = 6 // GitHub OAuth provider
+	ProviderType_PROVIDER_TYPE_GITLAB      ProviderType = 7 // GitLab OAuth provider
+	ProviderType_PROVIDER_TYPE_FACEBOOK    ProviderType = 8 // Facebook OAuth provider
 )
 
 // Enum value maps for ProviderType.
 var (
 	ProviderType_name = map[int32]string{
 		0: "PROVIDER_TYPE_UNSPECIFIED",
-		1: "PROVIDER_TYPE_GOOGLE",
-		2: "PROVIDER_TYPE_KAKAO",
-		3: "PROVIDER_TYPE_NAVER",
-		4: "PROVIDER_TYPE_APPLE",
-		5: "PROVIDER_TYPE_GITHUB",
-		6: "PROVIDER_TYPE_GITLAB",
-		7: "PROVIDER_TYPE_FACEBOOK",
+		1: "PROVIDER_TYPE_LOCAL",
+		2: "PROVIDER_TYPE_GOOGLE",
+		3: "PROVIDER_TYPE_KAKAO",
+		4: "PROVIDER_TYPE_NAVER",
+		5: "PROVIDER_TYPE_APPLE",
+		6: "PROVIDER_TYPE_GITHUB",
+		7: "PROVIDER_TYPE_GITLAB",
+		8: "PROVIDER_TYPE_FACEBOOK",
 	}
 	ProviderType_value = map[string]int32{
 		"PROVIDER_TYPE_UNSPECIFIED": 0,
-		"PROVIDER_TYPE_GOOGLE":      1,
-		"PROVIDER_TYPE_KAKAO":       2,
-		"PROVIDER_TYPE_NAVER":       3,
-		"PROVIDER_TYPE_APPLE":       4,
-		"PROVIDER_TYPE_GITHUB":      5,
-		"PROVIDER_TYPE_GITLAB":      6,
-		"PROVIDER_TYPE_FACEBOOK":    7,
+		"PROVIDER_TYPE_LOCAL":       1,
+		"PROVIDER_TYPE_GOOGLE":      2,
+		"PROVIDER_TYPE_KAKAO":       3,
+		"PROVIDER_TYPE_NAVER":       4,
+		"PROVIDER_TYPE_APPLE":       5,
+		"PROVIDER_TYPE_GITHUB":      6,
+		"PROVIDER_TYPE_GITLAB":      7,
+		"PROVIDER_TYPE_FACEBOOK":    8,
 	}
 )
 
@@ -89,16 +92,17 @@ var File_provider_v1_provider_proto protoreflect.FileDescriptor
 
 const file_provider_v1_provider_proto_rawDesc = "" +
 	"\n" +
-	"\x1aprovider/v1/provider.proto\x12\vprovider.v1*\xe2\x01\n" +
+	"\x1aprovider/v1/provider.proto\x12\vprovider.v1*\xfb\x01\n" +
 	"\fProviderType\x12\x1d\n" +
-	"\x19PROVIDER_TYPE_UNSPECIFIED\x10\x00\x12\x18\n" +
-	"\x14PROVIDER_TYPE_GOOGLE\x10\x01\x12\x17\n" +
-	"\x13PROVIDER_TYPE_KAKAO\x10\x02\x12\x17\n" +
-	"\x13PROVIDER_TYPE_NAVER\x10\x03\x12\x17\n" +
-	"\x13PROVIDER_TYPE_APPLE\x10\x04\x12\x18\n" +
-	"\x14PROVIDER_TYPE_GITHUB\x10\x05\x12\x18\n" +
-	"\x14PROVIDER_TYPE_GITLAB\x10\x06\x12\x1a\n" +
-	"\x16PROVIDER_TYPE_FACEBOOK\x10\aBCZAgithub.com/mandacode-com/accounts-proto/go/provider/v1;providerv1b\x06proto3"
+	"\x19PROVIDER_TYPE_UNSPECIFIED\x10\x00\x12\x17\n" +
+	"\x13PROVIDER_TYPE_LOCAL\x10\x01\x12\x18\n" +
+	"\x14PROVIDER_TYPE_GOOGLE\x10\x02\x12\x17\n" +
+	"\x13PROVIDER_TYPE_KAKAO\x10\x03\x12\x17\n" +
+	"\x13PROVIDER_TYPE_NAVER\x10\x04\x12\x17\n" +
+	"\x13PROVIDER_TYPE_APPLE\x10\x05\x12\x18\n" +
+	"\x14PROVIDER_TYPE_GITHUB\x10\x06\x12\x18\n" +
+	"\x14PROVIDER_TYPE_GITLAB\x10\a\x12\x1a\n" +
+	"\x16PROVIDER_TYPE_FACEBOOK\x10\bBCZAgithub.com/mandacode-com/accounts-proto/go/provider/v1;providerv1b\x06proto3"
 
 var (
 	file_provider_v1_provider_proto_rawDescOnce sync.Once
